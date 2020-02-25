@@ -13,4 +13,8 @@ public class Llamada {
         this.hora = hora;
         this.duracion = duracion;
     }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
 }

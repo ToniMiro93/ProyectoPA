@@ -10,7 +10,6 @@ public class Clientes {
     private LocalDate fecha;
     private Tarifa tarifa;
     private Direccion direccion;
-    private
 
     Clientes(String nombre, String NIF, String correo_e, LocalDate fecha, Tarifa tarifa, Direccion direccion){
         this.nombre=nombre;
