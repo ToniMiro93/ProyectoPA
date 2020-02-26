@@ -39,13 +39,13 @@ public class Factura {
 
     @Override
     public String toString() {
-        return "Factura{" + '\'' +
-                "tarifaAplicada=" + tarifaAplicada + '\'' +
-                ", codigo=" + codigo + '\'' +
-                ", emision=" + emision + '\'' +
-                ", inicioPeriodo=" + inicioPeriodo + '\'' +
-                ", finalPeriodo=" + finalPeriodo + '\'' +
-                ", importe=" + importe + '\'' +
+        return "Factura{" + '\n' +
+                "tarifaAplicada=" + tarifaAplicada + '\n' +
+                ", codigo=" + codigo + '\n' +
+                ", emision=" + emision + '\n' +
+                ", inicioPeriodo=" + inicioPeriodo + '\n' +
+                ", finalPeriodo=" + finalPeriodo + '\n' +
+                ", importe=" + importe + '\n' +
                 '}';
     }
 }

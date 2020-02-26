@@ -36,11 +36,11 @@ public class gestionClientes {
         return cliente.toString();
     }
 
-    public Cliente[] listadoClientes(){
-        Cliente[] lista = new Cliente[clientes.size()];
+    public HashSet<Cliente> listadoClientes(){
+        HashSet<Cliente> lista = new HashSet<>();
         int i = 0;
         for (String NIF : clientes.keySet()){
-            lista[i++] = clientes.get(NIF);
+            lista.add(clientes.get(NIF));
         }
         return lista;
     }
