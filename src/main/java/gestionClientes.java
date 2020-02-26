@@ -1,12 +1,12 @@
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Facturacion {
-    private HashMap<String, HashSet<Llamada>> llamadas;
+public class gestionClientes {
+    protected HashMap<String, HashSet<Llamada>> llamadas;
     private HashMap<String, HashSet<Factura>> facturas;
     private HashMap<String, Cliente> clientes;
 
-    Facturacion(){
+    gestionClientes(){
         llamadas=new HashMap<>();
         facturas=new HashMap<>();
         clientes=new HashMap<>();
@@ -42,4 +42,18 @@ public class Facturacion {
         return lista;
     }
 
+    public void anadirLlamada(Cliente cliente, Llamada llamada){
+        llamadas.get(cliente.getNIF()).add(llamada);
+    }
+
+    public Llamada[] listadoLlamadas(Cliente cliente){
+        Llamada[] lista = new Llamada[llamadas.get(cliente.getNIF()).size()];
+        int i = 0;
+        for (Llamada llamada : llamadas.get(cliente.getNIF())){
+            lista[i++] = llamada;
+        }
+        return lista;
+    }
+
+//    public void emitirFacura(Cliente cliente,)
 }
