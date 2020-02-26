@@ -17,4 +17,16 @@ public class Llamada {
     public LocalDate getFecha() {
         return fecha;
     }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public int getNumDest() {
+        return numDest;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
 }

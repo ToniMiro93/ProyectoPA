@@ -7,6 +7,7 @@ public class gestionClientes {
     protected HashMap<String, HashSet<Llamada>> llamadas;
     private HashMap<String, HashSet<Factura>> facturas;
     private HashMap<String, Cliente> clientes;
+    private HashMap<Integer, Factura> codFacturas;
 
     gestionClientes(){
         llamadas=new HashMap<>();
@@ -48,19 +49,33 @@ public class gestionClientes {
         llamadas.get(cliente.getNIF()).add(llamada);
     }
 
-    public Llamada[] listadoLlamadas(Cliente cliente){
-        Llamada[] lista = new Llamada[llamadas.get(cliente.getNIF()).size()];
-        int i = 0;
-        for (Llamada llamada : llamadas.get(cliente.getNIF())){
-            lista[i++] = llamada;
-        }
-        return lista;
+    public HashSet<Llamada> listadoLlamadas(Cliente cliente){
+        return llamadas.get(cliente.getNIF());
     }
 
-    public void emitirFacura(Cliente cliente){
+    public void emitirFacturaUltimoMes(Cliente cliente){
         LocalDate fechaHoy=LocalDate.now();
-        facturas.get(cliente.getNIF()).add(
-                new Factura(cliente.getTarifa(),fechaHoy, fechaHoy.minusMonths(1).minusDays(fechaHoy.getDayOfMonth()), fechaHoy.minusDays(fechaHoy.getDayOfMonth())));
+        Factura factura=new Factura(cliente.getTarifa(),fechaHoy, fechaHoy.minusMonths(1).minusDays(fechaHoy.getDayOfMonth()), fechaHoy.minusDays(fechaHoy.getDayOfMonth()));
+        factura.setImporte(calcularImporte(factura, cliente));
+        codFacturas.put(factura.getCodigo(), factura);
+        facturas.get(cliente.getNIF()).add(factura);
+
 
     }
+    private double calcularImporte(Factura factura,Cliente cliente){
+        double sumaImporte=0;
+        for(Llamada llamada:llamadas.get(cliente.getNIF())){
+            if (llamada.getFecha().compareTo(factura.getInicioPeriodo())>=0 && llamada.getFecha().compareTo(factura.getFinalPeriodo())<=0){
+                sumaImporte += llamada.getDuracion()*cliente.getTarifa().getEurosMinuto();
+            }
+        }
+        return sumaImporte;
+    }
+    public String recuperarFactura(int cod){
+        return codFacturas.get(cod).toString();
+    }
+    public HashSet<Factura> recuperarFacturas (Cliente cliente){
+        return facturas.get(cliente.getNIF());
+    }
+
 }

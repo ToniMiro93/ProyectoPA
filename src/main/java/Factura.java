@@ -21,7 +21,31 @@ public class Factura {
         return emision;
     }
 
-    public void calcularImporte(){
-        double sumaImporte;
+    public LocalDate getInicioPeriodo() {
+        return inicioPeriodo;
+    }
+
+    public LocalDate getFinalPeriodo() {
+        return finalPeriodo;
+    }
+
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    @Override
+    public String toString() {
+        return "Factura{" + '\'' +
+                "tarifaAplicada=" + tarifaAplicada + '\'' +
+                ", codigo=" + codigo + '\'' +
+                ", emision=" + emision + '\'' +
+                ", inicioPeriodo=" + inicioPeriodo + '\'' +
+                ", finalPeriodo=" + finalPeriodo + '\'' +
+                ", importe=" + importe + '\'' +
+                '}';
     }
 }
