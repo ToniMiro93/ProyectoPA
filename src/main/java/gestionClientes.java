@@ -1,5 +1,7 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class gestionClientes {
     protected HashMap<String, HashSet<Llamada>> llamadas;
@@ -24,7 +26,7 @@ public class gestionClientes {
         facturas.remove(cliente.getNIF());
     }
 
-    public void cambiarTarifa(Cliente cliente, Tarifa tarifa){
+    public void cambiarTarifa(Cliente cliente, int tarifa){
         cliente.setTarifa(tarifa);
     }
 
@@ -55,5 +57,10 @@ public class gestionClientes {
         return lista;
     }
 
-//    public void emitirFacura(Cliente cliente,)
+    public void emitirFacura(Cliente cliente){
+        LocalDate fechaHoy=LocalDate.now();
+        facturas.get(cliente.getNIF()).add(
+                new Factura(cliente.getTarifa(),fechaHoy, fechaHoy.minusMonths(1).minusDays(fechaHoy.getDayOfMonth()), fechaHoy.minusDays(fechaHoy.getDayOfMonth())));
+
+    }
 }

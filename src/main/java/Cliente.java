@@ -11,12 +11,12 @@ public abstract class Cliente {
     private Tarifa tarifa;
     private Direccion direccion;
 
-    Cliente(String nombre, String NIF, String correo_e, LocalDate fecha, Tarifa tarifa, Direccion direccion){
+    Cliente(String nombre, String NIF, String correo_e, LocalDate fecha, Direccion direccion){
         this.nombre=nombre;
         this.NIF=NIF;
         this.fecha=fecha;
         this.correo_e=correo_e;
-        this.tarifa=tarifa;
+        this.tarifa=new Tarifa();
         this.direccion=direccion;
     }
 
@@ -44,8 +44,8 @@ public abstract class Cliente {
         return direccion;
     }
 
-    public void setTarifa(Tarifa tarifa) {
-        this.tarifa = tarifa;
+    public void setTarifa(int eurosMinuto) {
+        this.getTarifa().setEurosMinuto(eurosMinuto);
     }
 
     @Override
