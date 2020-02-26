@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Clientes {
+public abstract class Cliente {
 
     private String nombre;
     private String NIF;
@@ -11,7 +11,7 @@ public class Clientes {
     private Tarifa tarifa;
     private Direccion direccion;
 
-    Clientes(String nombre, String NIF, String correo_e, LocalDate fecha, Tarifa tarifa, Direccion direccion){
+    Cliente(String nombre, String NIF, String correo_e, LocalDate fecha, Tarifa tarifa, Direccion direccion){
         this.nombre=nombre;
         this.NIF=NIF;
         this.fecha=fecha;
@@ -44,4 +44,19 @@ public class Clientes {
         return direccion;
     }
 
+    public void setTarifa(Tarifa tarifa) {
+        this.tarifa = tarifa;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente:" +
+                "nombre='" + nombre + '\'' +
+                ", NIF='" + NIF + '\'' +
+                ", correo_e='" + correo_e + '\'' +
+                ", fecha=" + fecha +
+                ", tarifa=" + tarifa +
+                ", direccion=" + direccion
+                ;
+    }
 }
