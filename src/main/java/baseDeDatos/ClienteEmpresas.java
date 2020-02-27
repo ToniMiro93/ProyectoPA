@@ -1,3 +1,5 @@
+package baseDeDatos;
+
 import java.time.LocalDate;
 
 public class ClienteEmpresas extends Cliente {

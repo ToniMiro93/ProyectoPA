@@ -1,9 +1,11 @@
+import baseDeDatos.Cliente;
+import baseDeDatos.ClienteParticulares;
+import baseDeDatos.Direccion;
+import baseDeDatos.gestionClientes;
 import es.uji.www.GeneradorDatosINE;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matcher.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import java.time.LocalDate;
 import java.util.HashSet;

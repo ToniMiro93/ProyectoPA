@@ -1,6 +1,6 @@
+package baseDeDatos;
+
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashMap;
 
 public abstract class Cliente {
 
@@ -50,7 +50,7 @@ public abstract class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente:" +
+        return "baseDeDatos.Cliente:" +
                 "nombre='" + nombre + '\'' +
                 ", NIF='" + NIF + '\'' +
                 ", correo_e='" + correo_e + '\'' +

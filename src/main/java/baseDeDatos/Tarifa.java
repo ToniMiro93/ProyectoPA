@@ -1,3 +1,5 @@
+package baseDeDatos;
+
 public class Tarifa {
     private int eurosMinuto=1;
 

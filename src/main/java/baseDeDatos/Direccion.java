@@ -1,3 +1,5 @@
+package baseDeDatos;
+
 public class Direccion{
     private int CP;
     private String provincia;
