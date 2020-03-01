@@ -16,4 +16,17 @@ public class Direccion{
         this.poblacion=poblacion;
         this.provincia=provincia;
     }
+
+    public void setCP(int CP) {
+        this.CP = CP;
+    }
+
+    public void setPoblacion(String poblacion) {
+        this.poblacion = poblacion;
+    }
+
+    public void setProvincia(String provincia) {
+
+        this.provincia = provincia;
+    }
 }

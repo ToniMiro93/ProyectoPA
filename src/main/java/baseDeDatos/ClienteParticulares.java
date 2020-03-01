@@ -19,6 +19,10 @@ public class ClienteParticulares extends Cliente {
         apellido1=cliente.apellido1;
     }
 
+    public void setApellido1(String apellido1) {
+        this.apellido1 = apellido1;
+    }
+
     @Override
     public String toString() {
         return super.toString() +

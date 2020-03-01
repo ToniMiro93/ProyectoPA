@@ -62,6 +62,26 @@ public abstract class Cliente {
         return direccion;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCorreo_e(String correo_e) {
+        this.correo_e = correo_e;
+    }
+
+    public void setNIF(String NIF) {
+        this.NIF = NIF;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
     public void setTarifa(int eurosMinuto) {
         this.getTarifa().setEurosMinuto(eurosMinuto);
     }

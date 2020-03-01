@@ -26,8 +26,7 @@ public class TestClientes {
             String poblacion=generador.getPoblacion(provincia);
             int cp=1;
             Direccion direccion=new Direccion(cp,provincia,poblacion);
-            LocalDate fecha=LocalDate.now();
-            Cliente cliente=new ClienteParticulares(nombre,NIF,correo,fecha,direccion,generador.getApellido());
+            Cliente cliente=new ClienteParticulares(nombre,NIF,correo,direccion,generador.getApellido());
             clientes.add(cliente);
             gestion.nuevoCliente(cliente);
         }

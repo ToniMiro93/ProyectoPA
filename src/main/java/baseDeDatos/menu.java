@@ -11,35 +11,67 @@ public class menu {
             int opcion = getOpcionPrincipal();
             switch (opcion){
                 case 1:
-                    opcion = getOpcionParticularEmpresa();
-                    Cliente nuevoCliente=null;
-                    switch (opcion){
-                        case 1:
-                            nuevoCliente=new ClienteParticulares();
-                            break;
-                        case 2:
-                            nuevoCliente=new ClienteEmpresas();
-                            break;
-                        case 3:
-                    }
-                    if (nuevoCliente==null)
-                        break;
-                    else if (nuevoCliente instanceof ClienteEmpresas)
-                    System.out.println("Introduce los datos requeridos.");
-                    System.out.print("Nombre:");
-                    gestion.nuevoCliente();
-            }
-            while (true) {
-            System.out.println(""
-            System.out.print("Elige la opcion que quieras realizar:");
-            switch (opcion){
-                case 1:
+                    anadirCliente();
+                    break;
+                case 2:
+                    borrarCliente();
 
             }
 
-        }
+
     }
 }
+
+    private void anadirCliente() {
+        int opcion;
+        opcion = getOpcionParticularEmpresa();
+        Cliente nuevoCliente=null;
+        switch (opcion){
+            case 1:
+                nuevoCliente=new ClienteParticulares();
+                break;
+            case 2:
+                nuevoCliente=new ClienteEmpresas();
+                break;
+            default:
+        }
+        if (nuevoCliente==null)
+            return;
+        else if (nuevoCliente instanceof ClienteEmpresas) {
+            crearCliente(nuevoCliente);
+            gestion.nuevoCliente(nuevoCliente);
+        }else if (nuevoCliente instanceof ClienteParticulares){
+            crearCliente(nuevoCliente);
+            System.out.println("Apellido:");
+            ((ClienteParticulares) nuevoCliente).setApellido1(sc.next());
+            gestion.nuevoCliente(nuevoCliente);
+        }
+    }
+
+    private void crearCliente(Cliente nuevoCliente) {
+        System.out.println("Introduce los datos requeridos.");
+        System.out.println("-------------------------------");
+        System.out.print("NIF:");
+        nuevoCliente.setNIF(sc.next());
+
+        System.out.print("E-mail:");
+        nuevoCliente.setCorreo_e(sc.next());
+
+        Direccion direccion = new Direccion();
+        System.out.println("Introduce la direccion:");
+        System.out.print("Provincia:");
+        direccion.setProvincia(sc.next());
+
+        System.out.print("Poblacion:");
+        direccion.setPoblacion(sc.next());
+
+        System.out.print("CodigoPostal:");
+        direccion.setCP(sc.nextInt());
+        nuevoCliente.setDireccion(direccion);
+
+        System.out.print("Nombre:");
+        nuevoCliente.setNombre(sc.next());
+    }
 
     private int getOpcionPrincipal() {
         int opcion;
@@ -58,6 +90,7 @@ public class menu {
             System.out.println("Escoge una opcion correcta!.");
             opcion=getOpcionParticularEmpresa();
         }
+        return opcion;
     }
 
     private int getOpcionParticularEmpresa() {
@@ -74,3 +107,8 @@ public class menu {
         }
         return opcion;
     }
+
+    private void borrarCliente(){
+        return;
+    }
+}
