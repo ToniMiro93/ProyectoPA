@@ -10,7 +10,7 @@ public class gestionClientes {
     private HashMap<String, Cliente> clientes;
     private HashMap<Integer, Factura> codFacturas;
 
-    gestionClientes(){
+    public gestionClientes(){
         llamadas=new HashMap<>();
         facturas=new HashMap<>();
         clientes=new HashMap<>();

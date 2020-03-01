@@ -1,6 +1,7 @@
 package baseDeDatos;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public abstract class Cliente {
 
@@ -11,13 +12,30 @@ public abstract class Cliente {
     private Tarifa tarifa;
     private Direccion direccion;
 
-    Cliente(String nombre, String NIF, String correo_e, LocalDate fecha, Direccion direccion){
+    Cliente (){
+        this.nombre=new String();
+        this.NIF=new String();
+        this.fecha=LocalDate.now();
+        this.correo_e=new String();
+        this.tarifa=new Tarifa();
+        this.direccion=new Direccion();
+    }
+    Cliente(String nombre, String NIF, String correo_e, Direccion direccion){
         this.nombre=nombre;
         this.NIF=NIF;
-        this.fecha=fecha;
+        this.fecha=LocalDate.now();
         this.correo_e=correo_e;
         this.tarifa=new Tarifa();
         this.direccion=direccion;
+    }
+
+    Cliente(Cliente cliente){
+        this.nombre=cliente.nombre;
+        this.NIF=cliente.NIF;
+        this.fecha=cliente.fecha;
+        this.correo_e=cliente.correo_e;
+        this.tarifa=cliente.tarifa;
+        this.direccion=cliente.direccion;
     }
 
     public String getNombre() {

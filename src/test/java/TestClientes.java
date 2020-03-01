@@ -9,6 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import java.time.LocalDate;
 import java.util.HashSet;
+import baseDeDatos.*;
 
 
 public class TestClientes {
