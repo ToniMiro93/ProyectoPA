@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.time.LocalDate;
 
 public class gestionClientes {
-    protected HashMap<String, HashSet<Llamada>> llamadas;
+    private HashMap<String, HashSet<Llamada>> llamadas;
     private HashMap<String, HashSet<Factura>> facturas;
     private HashMap<String, Cliente> clientes;
     private HashMap<Integer, Factura> codFacturas;
@@ -48,6 +48,10 @@ public class gestionClientes {
 
     public void anadirLlamada(Cliente cliente, Llamada llamada){
         llamadas.get(cliente.getNIF()).add(llamada);
+    }
+
+    public HashMap<String, Cliente> getClientes() {
+        return clientes;
     }
 
     public HashSet<Llamada> listadoLlamadas(Cliente cliente){

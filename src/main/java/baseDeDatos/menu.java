@@ -6,21 +6,37 @@ public class menu {
     private Scanner sc=new Scanner(System.in);
     public gestionClientes gestion=new gestionClientes();
 
-    public void menu(){
-        while(true){
+    public void menu() {
+        while (true) {
             int opcion = getOpcionPrincipal();
-            switch (opcion){
+            switch (opcion) {
                 case 1:
                     anadirCliente();
                     break;
                 case 2:
                     borrarCliente();
-
+                    break;
+                case 3:
+                    cambiarTarifa();
+                    break;
+                case 4:
+                    mostrarCliente();
+                    break;
+                case 5:
+                    mostrarClientes();
+                    break;
+                case 6:
+                    gestionLlamadas();
+                    break;
             }
 
-
+        }
     }
-}
+        public void gestionLlamadas(){
+            while(true){
+
+            }
+    }
 
     private void anadirCliente() {
         int opcion;
@@ -109,6 +125,77 @@ public class menu {
     }
 
     private void borrarCliente(){
-        return;
+
+        System.out.println("-----------------");
+        System.out.println("1)Borrar Cliente a partir de su NIF.");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion=sc.nextInt();
+        switch (opcion){
+            case 1:
+                System.out.print("Introduce el NIF:");
+                String NIF=sc.next();
+                if (gestion.getClientes().containsKey(NIF)){
+                    gestion.borrarCliente(gestion.getClientes().get(NIF));
+                }
+                break;
+            default:
+        }
     }
+    private void cambiarTarifa(){
+        System.out.println("-----------------");
+        System.out.println("1)Cambiar Tarifa a partir de su NIF.");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion=sc.nextInt();
+        switch (opcion){
+            case 1:
+                System.out.print("Introduce el NIF:");
+                String NIF=sc.next();
+                if (gestion.getClientes().containsKey(NIF)){
+                    System.out.print("Introduce la nueva tarifa:");
+                    int tarifa=sc.nextInt();
+                    gestion.cambiarTarifa(gestion.getClientes().get(NIF),tarifa);
+                }
+                break;
+            default:
+        }
+    }
+
+    private void mostrarCliente(){
+        System.out.println("-----------------");
+        System.out.println("1)Mostrar cliente a partir de su NIF.");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion=sc.nextInt();
+        switch (opcion){
+            case 1:
+                System.out.print("Introduce el NIF:");
+                String NIF=sc.next();
+                if (gestion.getClientes().containsKey(NIF)){
+                    gestion.datosCliente(gestion.datosCliente(NIF));
+                }
+                break;
+            default:
+        }
+    }
+
+    private void mostrarClientes(){
+        System.out.println("-----------------");
+        System.out.println("1)Mostrar Listado de clientes");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion=sc.nextInt();
+        switch (opcion){
+            case 1:
+                System.out.println("NIF"+"\t"+"Nombre");
+                System.out.println("---------"+ "\t" + "---------");
+                for (Cliente cliente: gestion.listadoClientes()){
+                    System.out.println(cliente.getNIF() + "\t" + cliente.getNombre());
+                }
+                break;
+            default:
+        }
+    }
+
 }
