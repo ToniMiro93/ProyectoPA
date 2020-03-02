@@ -1,4 +1,4 @@
-package baseDeDatos;
+package baseDeDatos.clientes.datos;
 
 public class Direccion{
     private int CP;

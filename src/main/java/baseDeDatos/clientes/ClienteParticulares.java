@@ -1,4 +1,6 @@
-package baseDeDatos;
+package baseDeDatos.clientes;
+
+import baseDeDatos.clientes.datos.Direccion;
 
 public class ClienteParticulares extends Cliente {
     private String apellido1;

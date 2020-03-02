@@ -1,14 +1,16 @@
-package baseDeDatos;
+package baseDeDatos.facturas;
+
+import baseDeDatos.clientes.datos.Tarifa;
 
 import java.time.LocalDate;
 
 public class Factura {
-    static private int codigoDisponible;
+    private static int codigoDisponible;
     private Tarifa tarifaAplicada;
-    final private int codigo;
-    private LocalDate emision;  //Fecha de emision
-    private LocalDate inicioPeriodo;    //Inicio del periodo de baseDeDatos.gestionClientes
-    private LocalDate finalPeriodo;     //Final del periodo de baseDeDatos.gestionClientes
+    private final int codigo;
+    private LocalDate emision;          //Fecha de emision
+    private LocalDate inicioPeriodo;    //Inicio del periodo de gestion.GestionClientes
+    private LocalDate finalPeriodo;     //Final del periodo de gestion.GestionClientes
     private double importe;
 
     public Factura(Tarifa tarifaAplicada, LocalDate emision, LocalDate inicioPeriodo, LocalDate finalPeriodo) {
@@ -45,7 +47,7 @@ public class Factura {
 
     @Override
     public String toString() {
-        return "baseDeDatos.Factura{" + '\n' +
+        return "baseDeDatos.facturas.Factura{" + '\n' +
                 "tarifaAplicada=" + tarifaAplicada + '\n' +
                 ", codigo=" + codigo + '\n' +
                 ", emision=" + emision + '\n' +

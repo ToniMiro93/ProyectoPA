@@ -1,4 +1,4 @@
-package baseDeDatos;
+package baseDeDatos.clientes.datos;
 
 public class Tarifa {
     private int eurosMinuto=1;

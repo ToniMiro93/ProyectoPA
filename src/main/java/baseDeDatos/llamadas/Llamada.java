@@ -1,4 +1,4 @@
-package baseDeDatos;
+package baseDeDatos.llamadas;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
