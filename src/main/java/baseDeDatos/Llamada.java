@@ -31,4 +31,9 @@ public class Llamada {
     public LocalTime getHora() {
         return hora;
     }
+
+    @Override
+    public String toString() {
+        return "Llamada{" + "numDest=" + numDest + ", fecha=" + fecha + ", hora=" + hora + ", duracion=" + duracion + '}';
+    }
 }

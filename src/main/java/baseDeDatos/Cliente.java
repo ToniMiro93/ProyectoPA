@@ -38,13 +38,13 @@ public abstract class Cliente {
 
     @Override
     public String toString() {
-        return "baseDeDatos.Cliente:" +
+        return "baseDeDatos.Cliente:" + '\n' +
                 "nombre='" + nombre + '\n' +
-                ", NIF='" + NIF + '\n' +
-                ", correo_e=" + correo_e + '\n' +
-                ", fecha=" + fecha + '\n' +
-                ", tarifa=" + tarifa + '\n' +
-                ", direccion=" + direccion
+                "NIF='" + NIF + '\n' +
+                "correo_e=" + correo_e + '\n' +
+                "fecha=" + fecha + '\n' +
+                "tarifa=" + tarifa + '\n' +
+                "direccion=" + direccion
                 ;
     }
 

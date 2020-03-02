@@ -52,6 +52,13 @@ public class gestionClientes {
     public HashMap<String, Cliente> getClientes() {
         return clientes;
     }
+    public HashMap<Integer, Factura> getCodFacturas() {
+        return codFacturas;
+    }
+
+    public HashMap<String, HashSet<Factura>> getFacturas() {
+        return facturas;
+    }
 
     public HashSet<Llamada> listadoLlamadas(Cliente cliente){
         return llamadas.get(cliente.getNIF());

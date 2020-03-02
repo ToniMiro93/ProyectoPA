@@ -39,6 +39,10 @@ public class Factura {
         return codigo;
     }
 
+    public double getImporte() {
+        return importe;
+    }
+
     @Override
     public String toString() {
         return "baseDeDatos.Factura{" + '\n' +

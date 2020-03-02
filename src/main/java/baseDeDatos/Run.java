@@ -1,5 +1,6 @@
 package baseDeDatos;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Run {
@@ -28,6 +29,12 @@ public class Run {
                 case 6:
                     gestionLlamadas();
                     break;
+                case 7:
+                    gestionFacturas();
+                    break;
+                case 8:
+                    return;
+                default:
             }
 
         }
@@ -40,13 +47,49 @@ public class Run {
                     darAltaLlamada();
                     break;
                 case 2:
-                    borrarCliente();
+                    recuperarFacturaCodigo();
                     break;
+                case 3:
+                    return;
                 default:
             }
         }
     }
 
+    public void gestionFacturas(){
+        while(true){
+            int opcion=getOpcionFacturas();
+            switch (opcion) {
+                case 1:
+                    emitirFactura();
+                    break;
+                case 2:
+                    recuperarFacturaCodigo();
+                    break;
+                case 3:
+                    recuperarFacturasNIF();
+                    break;
+                case 4:
+                    return;
+                default:
+            }
+        }
+    }
+
+    private int getOpcionFacturas(){
+        System.out.println("Menú de gestion de facturas v1.0");
+        System.out.println("----------------------------------------------");
+        System.out.println("1)Emitir factura");
+        System.out.println("2)Mostrar factura");
+        System.out.println("3)Mostrar facturas de un cliente.");
+        System.out.println("4)(atras).");
+        int opcion=sc.nextInt();
+        while (opcion<1 || opcion>4) {
+            System.out.println("Escoge una opcion correcta!.");
+            opcion=getOpcionLlamadas();
+        }
+        return opcion;
+    }
     private int getOpcionLlamadas(){
         System.out.println("Menú de gestion de llamadas de clientes v1.0");
         System.out.println("----------------------------------------------");
@@ -115,6 +158,7 @@ public class Run {
         System.out.println("5)Listado de clientes.");
         System.out.println("6)Gestionar llamadas de un cliente.");
         System.out.println("7)Gestionar facturación de un cliente.");
+        System.out.println("8)Salir.");
         System.out.print("Elige la opcion que quieras realizar:");
         opcion=sc.nextInt();
         while (opcion<1 || opcion>7) {
@@ -203,7 +247,7 @@ public class Run {
         int opcion=sc.nextInt();
         switch (opcion){
             case 1:
-                System.out.println("NIF"+"\t"+"Nombre");
+                System.out.println("NIF"+"\t\t"+"Nombre");
                 System.out.println("---------"+ "\t" + "---------");
                 for (Cliente cliente: gestion.listadoClientes()){
                     System.out.println(cliente.getNIF() + "\t" + cliente.getNombre());
@@ -235,4 +279,95 @@ public class Run {
             default:
         }
     }
+
+    private void listarLLamadas() {
+        System.out.println("-----------------");
+        System.out.println("1)Mostrar Listado de llamadas de un cliente");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion = sc.nextInt();
+        switch (opcion) {
+            case 1:
+                System.out.print("Introduce el NIF:");
+                String NIF = sc.next();
+                if (gestion.getClientes().containsKey(NIF)) {
+                    for (Llamada llamada : gestion.listadoLlamadas(gestion.getClientes().get(NIF)))
+                        System.out.println(llamada.toString());
+
+                }
+            default:
+        }
+    }
+
+    private void emitirFactura() {
+        System.out.println("-----------------");
+        System.out.println("1)Emitir factura de un cliente a partir de su NIF");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion = sc.nextInt();
+        switch (opcion) {
+            case 1:
+                System.out.print("Introduce el NIF:");
+                String NIF = sc.next();
+                if (gestion.getClientes().containsKey(NIF)) {
+                    System.out.print("Introduce fecha de inicio:");
+                    System.out.print("Dia:");
+                    int dia=sc.nextInt();
+                    System.out.print("Mes:");
+                    int mes=sc.nextInt();
+                    System.out.print("Año:");
+                    int ano=sc.nextInt();
+                    LocalDate fechaInicio=LocalDate.of(ano,mes,dia);
+                    System.out.print("Introduce fecha fin:");
+                    System.out.print("Dia:");
+                    dia=sc.nextInt();
+                    System.out.print("Mes:");
+                    mes=sc.nextInt();
+                    System.out.print("Año:");
+                    ano=sc.nextInt();
+                    LocalDate fechaFin=LocalDate.of(ano,mes,dia);
+                    gestion.emitirFactura(gestion.getClientes().get(NIF),fechaInicio,fechaFin);
+                }
+            default:
+        }
+    }
+
+    private void recuperarFacturaCodigo() {
+        System.out.println("-----------------");
+        System.out.println("1)Mostrar factura a partir de su codigo");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion = sc.nextInt();
+        switch (opcion) {
+            case 1:
+                System.out.print("Introduce codigo");
+                int cod = sc.nextInt();
+                if (gestion.getCodFacturas().containsKey(cod)) {
+                    System.out.println(gestion.getCodFacturas().get(cod).toString());
+                }
+
+        }
+    }
+
+    private void recuperarFacturasNIF() {
+        System.out.println("-----------------");
+        System.out.println("1)Mostrar facturas de un cliente");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion = sc.nextInt();
+        switch (opcion) {
+            case 1:System.out.print("Introduce el NIF:");
+                String NIF = sc.next();
+                if (gestion.getClientes().containsKey(NIF)) {
+                    System.out.println("Cod. Factura" + "\t" + "Importe");
+                    System.out.println("------------" + "\t" + "---------");
+                    for (Factura factura : gestion.getFacturas().get(NIF)) {
+                        System.out.println(factura.getCodigo() + "\t\t" + factura.getImporte());
+                    }
+                }
+                break;
+            default:
+        }
+    }
+
 }
