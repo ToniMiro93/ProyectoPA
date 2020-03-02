@@ -82,8 +82,8 @@ public class gestionClientes {
         }
         return sumaImporte;
     }
-    public String recuperarFactura(int cod){
-        return codFacturas.get(cod).toString();
+    public Factura recuperarFactura(int cod){
+        return codFacturas.get(cod);
     }
     public HashSet<Factura> recuperarFacturas (Cliente cliente){
         return facturas.get(cliente.getNIF());

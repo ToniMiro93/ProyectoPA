@@ -343,7 +343,7 @@ public class Run {
                 System.out.print("Introduce codigo");
                 int cod = sc.nextInt();
                 if (gestion.getCodFacturas().containsKey(cod)) {
-                    System.out.println(gestion.getCodFacturas().get(cod).toString());
+                    System.out.println(gestion.recuperarFactura(cod).toString());
                 }
 
         }
@@ -361,7 +361,7 @@ public class Run {
                 if (gestion.getClientes().containsKey(NIF)) {
                     System.out.println("Cod. Factura" + "\t" + "Importe");
                     System.out.println("------------" + "\t" + "---------");
-                    for (Factura factura : gestion.getFacturas().get(NIF)) {
+                    for (Factura factura : gestion.recuperarFacturas(gestion.getClientes().get(NIF))) {
                         System.out.println(factura.getCodigo() + "\t\t" + factura.getImporte());
                     }
                 }
