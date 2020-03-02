@@ -21,9 +21,9 @@ public class Gestion {
         gestorClientes.nuevoCliente(cliente);
     }
 
-    public void borrarCliente(Cliente cliente){
-        gestorClientes.borrarCliente(cliente);
-        gestorFacturas.borrarFacturas(cliente);
+    public void borrarCliente(String NIF){
+        gestorClientes.borrarCliente(NIF);
+        gestorFacturas.borrarFacturas(NIF);
     }
 
     public void cambiarTarifa(Cliente cliente, Tarifa tarifa){
@@ -42,7 +42,7 @@ public class Gestion {
         gestorClientes.anadirLlamada(cliente, llamada);
     }
 
-    public HashSet<Llamada> listarLlamada(Cliente cliente){
+    public HashSet<Llamada> listarLlamadas(Cliente cliente){
         return gestorClientes.listadoLlamadas(cliente);
     }
 

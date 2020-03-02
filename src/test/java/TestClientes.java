@@ -3,6 +3,7 @@ import baseDeDatos.clientes.ClienteParticulares;
 import baseDeDatos.clientes.datos.Direccion;
 import baseDeDatos.llamadas.Llamada;
 import es.uji.www.GeneradorDatosINE;
+import gestion.Gestion;
 import gestion.GestionClientes;
 import org.junit.Test;
 
@@ -20,65 +21,67 @@ public class TestClientes {
     @Test
     public void testNuevoCliente() {
         //Creo la base de datos
-        GestionClientes gestion = crearDatosMuestra();
-        int clientesAntes = gestion.listadoClientes().size();
-        gestion.nuevoCliente(crearCliente());
-        int clientesDespues = gestion.listadoClientes().size();
+        Gestion gestion = crearDatosMuestra();
+        int clientesAntes = gestion.listarClientes().size();
+        gestion.anadirCliente(crearCliente());
+        int clientesDespues = gestion.listarClientes().size();
         assertThat(clientesDespues, is(clientesAntes + 1));
     }
 
     @Test
-    public void testBorrarCliente(){
-        GestionClientes gestion = crearDatosMuestra();
-        int clientesAntes = gestion.listadoClientes().size();
-        gestion.borrarCliente(seleccionarCualquierCliente(gestion));
-        int clientesDespues = gestion.listadoClientes().size();
+    public void testBorrarClienteByNIF(){
+        Gestion gestion = crearDatosMuestra();
+        Cliente cliente = crearCliente();
+        gestion.anadirCliente(cliente);
+        int clientesAntes = gestion.listarClientes().size();
+        gestion.borrarCliente(cliente.getNIF());
+        int clientesDespues = gestion.listarClientes().size();
         assertThat(clientesDespues, is(clientesAntes - 1));
     }
 
     @Test
-    public void testGetByNIF(){
-        GestionClientes gestion = crearDatosMuestra();
+    public void testRecuperarClienteByNIF(){
+        Gestion gestion = crearDatosMuestra();
         Cliente nuevoCliente = crearCliente();
-        gestion.nuevoCliente(nuevoCliente);
-        Cliente clienteRecuperado = gestion.datosCliente(nuevoCliente.getNIF());
+        gestion.anadirCliente(nuevoCliente);
+        Cliente clienteRecuperado = gestion.recuperarCliente(nuevoCliente.getNIF());
         boolean sonIguales = clienteRecuperado.equals(nuevoCliente);
         assertThat(true, is(sonIguales));
     }
 
     @Test
     public void testListadoClientes(){
-        GestionClientes gestion = new GestionClientes();
+        Gestion gestion = new Gestion();
         HashSet<Cliente> setPrueba = new HashSet<>();
         Cliente cliente;
         for (int i = 0; i < 6; i++){
             cliente = crearCliente();
-            gestion.nuevoCliente(cliente);
+            gestion.anadirCliente(cliente);
             setPrueba.add(cliente);
         }
         int tamanoAntes = setPrueba.size();
-        setPrueba.retainAll(gestion.listadoClientes());
-        setPrueba.addAll(gestion.listadoClientes());
+        setPrueba.retainAll(gestion.listarClientes());
+        setPrueba.addAll(gestion.listarClientes());
         int tamanoDespues = setPrueba.size();
         assertThat(tamanoAntes, is(tamanoDespues));
     }
 
-    @Test
-    public void testAñadirLlamada(){
-        GestionClientes gestion = new GestionClientes();
-        Cliente clientePrueba = crearCliente();
-        gestion.nuevoCliente(clientePrueba);
-        int llamadasAntes = gestion.listadoLlamadas(clientePrueba).size();
-        gestion.anadirLlamada(clientePrueba, new Llamada(111111111, 10));
-        int llamadasDespues = gestion.listadoLlamadas(clientePrueba).size();
-        assertThat(llamadasDespues, is(llamadasAntes + 1));
-    }
+//    @Test
+//    public void testAñadirLlamada(){
+//        GestionClientes gestion = new GestionClientes();
+//        Cliente clientePrueba = crearCliente();
+//        gestion.nuevoCliente(clientePrueba);
+//        int llamadasAntes = gestion.listadoLlamadas(clientePrueba).size();
+//        gestion.anadirLlamada(clientePrueba, new Llamada(111111111, 10));
+//        int llamadasDespues = gestion.listadoLlamadas(clientePrueba).size();
+//        assertThat(llamadasDespues, is(llamadasAntes + 1));
+//    }
 
     //Generación de una muestra de 20 clientes aleatoria
-    private static GestionClientes crearDatosMuestra(){
-        GestionClientes gestion = new GestionClientes();
+    private static Gestion crearDatosMuestra(){
+        Gestion gestion = new Gestion();
         for(int i = 0; i < 20; i++){
-            gestion.nuevoCliente(crearCliente());
+            gestion.anadirCliente(crearCliente());
         }
         return gestion;
     }
@@ -100,9 +103,9 @@ public class TestClientes {
         return new ClienteParticulares(nombre,NIF,correo,direccion,generador.getApellido());
     }
 
-    private static Cliente seleccionarCualquierCliente(GestionClientes gestion){
-        Optional<Cliente> any = gestion.listadoClientes().stream().findAny();
-        return any.get();
-    }
+//    private static Cliente seleccionarCualquierCliente(Gestion gestion){
+//        Optional<Cliente> any = gestion.listarClientes().stream().findAny();
+//        return any.get();
+//    }
 
 }

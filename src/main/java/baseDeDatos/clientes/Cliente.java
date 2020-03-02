@@ -22,7 +22,7 @@ public abstract class Cliente {
         this.NIF=NIF;
         this.fecha=LocalDate.now();
         this.correo_e=correo_e;
-        this.tarifa=new Tarifa();
+        this.tarifa=new Tarifa(1);
         this.direccion=direccion;
     }
 

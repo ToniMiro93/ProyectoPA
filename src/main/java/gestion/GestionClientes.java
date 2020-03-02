@@ -24,9 +24,9 @@ public class GestionClientes {
         llamadas.put(cliente.getNIF(), new HashSet<>());
     }
 
-    protected void borrarCliente(Cliente cliente) {
-        clientes.remove(cliente.getNIF());
-        llamadas.remove(cliente.getNIF());
+    protected void borrarCliente(String NIF) {
+        clientes.remove(NIF);
+        llamadas.remove(NIF);
 
     }
 

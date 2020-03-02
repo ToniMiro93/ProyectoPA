@@ -17,10 +17,13 @@ public class GestionFacturas {
         this.facturas=new HashMap<>();
     }
 
-    protected void borrarFacturas(Cliente cliente){
-        HashSet<Factura> facturasCliente = facturas.remove(cliente.getNIF());
-        for(Factura factura: facturasCliente){
-            codFacturas.remove(factura.getCodigo());
+    protected void borrarFacturas(String NIF){
+        HashSet<Factura> facturasCliente = facturas.get(NIF);
+        if (facturasCliente != null) {
+            for (Factura factura : facturasCliente) {
+                codFacturas.remove(factura.getCodigo());
+            }
+            facturas.remove(NIF);
         }
     }
 
