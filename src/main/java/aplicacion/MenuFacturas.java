@@ -25,10 +25,10 @@ public class MenuFacturas implements Menu{
                     emitirFactura();
                     break;
                 case 2:
-
+                    recuperarFacturaByCodigo();
                     break;
                 case 3:
-
+                    listarFacturasNIF();
                     break;
                 case 4:
                     return;
@@ -90,6 +90,38 @@ public class MenuFacturas implements Menu{
                 gestion.emitirFactura(new ClienteEmpresas("Pepe",
                         "11111111T", "pepe@email.es", new Direccion(1200,"castellon",
                         "castellon")),fechaInicio,fechaFin);
+                break;
+            case 2:
+                return;
+        }
+    }
+
+    private void recuperarFacturaByCodigo() {
+        System.out.println("-----------------");
+        System.out.println("1)Recuperar factura a partir de su codigo");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion = getOpcion(2);
+        switch (opcion) {
+            case 1:
+                System.out.print("Introduce codigo");
+                int cod = sc.nextInt();
+                gestion.recuperarFactura(cod);
+            case 2:
+                return;
+        }
+    }
+
+    private void listarFacturasNIF() {
+        System.out.println("-----------------");
+        System.out.println("1)Mostrar facturas de un cliente");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion = getOpcion(2);
+        switch (opcion) {
+            case 1:System.out.print("Introduce el NIF:");
+                String NIF = sc.next();
+                gestion.listarFacturas(gestion.recuperarCliente(NIF));
                 break;
             case 2:
                 return;
