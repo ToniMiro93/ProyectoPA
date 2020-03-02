@@ -32,9 +32,8 @@ public class gestionClientes {
         cliente.setTarifa(tarifa);
     }
 
-    public String datosCliente(String NIF){
-        Cliente cliente = clientes.get(NIF);
-        return cliente.toString();
+    public Cliente datosCliente(String NIF){
+        return clientes.get(NIF);
     }
 
     public HashSet<Cliente> listadoClientes(){
@@ -58,9 +57,9 @@ public class gestionClientes {
         return llamadas.get(cliente.getNIF());
     }
 
-    public void emitirFacturaUltimoMes(Cliente cliente){
+    public void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal){
         LocalDate fechaHoy=LocalDate.now();
-        Factura factura=new Factura(cliente.getTarifa(),fechaHoy, fechaHoy.minusMonths(1).minusDays(fechaHoy.getDayOfMonth()), fechaHoy.minusDays(fechaHoy.getDayOfMonth()));
+        Factura factura=new Factura(cliente.getTarifa(),fechaHoy, fechaInicial, fechaFinal);
         factura.setImporte(calcularImporte(factura, cliente));
         codFacturas.put(factura.getCodigo(), factura);
         facturas.get(cliente.getNIF()).add(factura);

@@ -2,11 +2,11 @@ package baseDeDatos;
 
 import java.util.Scanner;
 
-public class menu {
+public class Run {
     private Scanner sc=new Scanner(System.in);
     public gestionClientes gestion=new gestionClientes();
 
-    public void menu() {
+    public Run() {
         while (true) {
             int opcion = getOpcionPrincipal();
             switch (opcion) {
@@ -32,63 +32,78 @@ public class menu {
 
         }
     }
-        public void gestionLlamadas(){
-            while(true){
-
+    public void gestionLlamadas(){
+        while(true){
+            int opcion=getOpcionLlamadas();
+            switch (opcion) {
+                case 1:
+                    darAltaLlamada();
+                    break;
+                case 2:
+                    borrarCliente();
+                    break;
+                default:
             }
+        }
+    }
+
+    private int getOpcionLlamadas(){
+        System.out.println("Menú de gestion de llamadas de clientes v1.0");
+        System.out.println("----------------------------------------------");
+        System.out.println("1)Dar de alta una llamada.");
+        System.out.println("2)Borrar cliente.");
+        System.out.println("3)(atras).");
+        int opcion=sc.nextInt();
+        while (opcion<1 || opcion>3) {
+            System.out.println("Escoge una opcion correcta!.");
+            opcion=getOpcionLlamadas();
+        }
+        return opcion;
     }
 
     private void anadirCliente() {
-        int opcion;
-        opcion = getOpcionParticularEmpresa();
-        Cliente nuevoCliente=null;
-        switch (opcion){
-            case 1:
-                nuevoCliente=new ClienteParticulares();
-                break;
-            case 2:
-                nuevoCliente=new ClienteEmpresas();
-                break;
-            default:
-        }
-        if (nuevoCliente==null)
-            return;
-        else if (nuevoCliente instanceof ClienteEmpresas) {
-            crearCliente(nuevoCliente);
-            gestion.nuevoCliente(nuevoCliente);
-        }else if (nuevoCliente instanceof ClienteParticulares){
-            crearCliente(nuevoCliente);
-            System.out.println("Apellido:");
-            ((ClienteParticulares) nuevoCliente).setApellido1(sc.next());
-            gestion.nuevoCliente(nuevoCliente);
-        }
+        gestion.nuevoCliente(crearCliente());
     }
 
-    private void crearCliente(Cliente nuevoCliente) {
+    private Cliente crearCliente() {
+        int opcion = getOpcionParticularEmpresa();
+        Cliente nuevoCliente=null;
         System.out.println("Introduce los datos requeridos.");
         System.out.println("-------------------------------");
         System.out.print("NIF:");
-        nuevoCliente.setNIF(sc.next());
+        String NIF = sc.next();
 
         System.out.print("E-mail:");
-        nuevoCliente.setCorreo_e(sc.next());
+        String email = sc.next();
 
-        Direccion direccion = new Direccion();
         System.out.println("Introduce la direccion:");
         System.out.print("Provincia:");
-        direccion.setProvincia(sc.next());
+        String provincia = sc.next();
 
         System.out.print("Poblacion:");
-        direccion.setPoblacion(sc.next());
+        String poblacion = sc.next();
 
         System.out.print("CodigoPostal:");
-        direccion.setCP(sc.nextInt());
-        nuevoCliente.setDireccion(direccion);
+        int CP = sc.nextInt();
+
+        Direccion direccion = new Direccion(CP, provincia, poblacion);
 
         System.out.print("Nombre:");
-        nuevoCliente.setNombre(sc.next());
-    }
+        String nombre = sc.next();
+        switch (opcion){
+            case 1:
+                System.out.print("Apellido:");
+                String apellido=sc.next();
+                nuevoCliente=new ClienteParticulares(nombre,NIF,email,direccion,apellido);
+                break;
+            case 2:
+                nuevoCliente=new ClienteEmpresas(nombre,NIF,email,direccion);
+                break;
+            default:
+        }
 
+        return nuevoCliente;
+    }
     private int getOpcionPrincipal() {
         int opcion;
         System.out.println("Menú de gestion de clientes de telefonia v1.0");
@@ -173,7 +188,7 @@ public class menu {
                 System.out.print("Introduce el NIF:");
                 String NIF=sc.next();
                 if (gestion.getClientes().containsKey(NIF)){
-                    gestion.datosCliente(gestion.datosCliente(NIF));
+                    System.out.println(gestion.datosCliente(NIF).toString());
                 }
                 break;
             default:
@@ -198,4 +213,26 @@ public class menu {
         }
     }
 
+    private void darAltaLlamada(){
+        System.out.println("-----------------");
+        System.out.println("1)Dar de alta llamada a partir de su NIF.");
+        System.out.println("2)(atras)");
+        System.out.println("Escoge una opcion:");
+        int opcion=sc.nextInt();
+        switch (opcion){
+            case 1:
+                System.out.print("Introduce el NIF:");
+                String NIF=sc.next();
+                if (gestion.getClientes().containsKey(NIF)){
+                    System.out.print("Introduce el numero de destino:");
+                    long numDest=sc.nextLong();
+                    System.out.print("Introduce la duracion de la llamada(min):");
+                    int duracion=sc.nextInt();
+                    Llamada llamada=new Llamada(numDest,duracion);
+                    gestion.anadirLlamada(gestion.getClientes().get(NIF),llamada);
+                }
+                break;
+            default:
+        }
+    }
 }

@@ -4,15 +4,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Llamada {
-    private int numDest;
+    private long numDest;
     private LocalDate fecha;
     private LocalTime hora;
     private int duracion;
 
-    public Llamada(int numDest, LocalDate fecha, LocalTime hora, int duracion) {
+    public Llamada(long numDest, int duracion) {
         this.numDest = numDest;
-        this.fecha = fecha;
-        this.hora = hora;
+        this.fecha = LocalDate.now();
+        this.hora = LocalTime.now();
         this.duracion = duracion;
     }
 
@@ -24,7 +24,7 @@ public class Llamada {
         return duracion;
     }
 
-    public int getNumDest() {
+    public long getNumDest() {
         return numDest;
     }
 

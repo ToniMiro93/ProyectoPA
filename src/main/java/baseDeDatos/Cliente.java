@@ -1,7 +1,6 @@
 package baseDeDatos;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public abstract class Cliente {
 
@@ -12,14 +11,6 @@ public abstract class Cliente {
     private Tarifa tarifa;
     private Direccion direccion;
 
-    Cliente (){
-        this.nombre=new String();
-        this.NIF=new String();
-        this.fecha=LocalDate.now();
-        this.correo_e=new String();
-        this.tarifa=new Tarifa();
-        this.direccion=new Direccion();
-    }
     Cliente(String nombre, String NIF, String correo_e, Direccion direccion){
         this.nombre=nombre;
         this.NIF=NIF;
@@ -27,15 +18,6 @@ public abstract class Cliente {
         this.correo_e=correo_e;
         this.tarifa=new Tarifa();
         this.direccion=direccion;
-    }
-
-    Cliente(Cliente cliente){
-        this.nombre=cliente.nombre;
-        this.NIF=cliente.NIF;
-        this.fecha=cliente.fecha;
-        this.correo_e=cliente.correo_e;
-        this.tarifa=cliente.tarifa;
-        this.direccion=cliente.direccion;
     }
 
     public String getNombre() {
@@ -46,40 +28,8 @@ public abstract class Cliente {
         return NIF;
     }
 
-    public String getCorreo_e() {
-        return correo_e;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
     public Tarifa getTarifa() {
         return tarifa;
-    }
-
-    public Direccion getDireccion() {
-        return direccion;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setCorreo_e(String correo_e) {
-        this.correo_e = correo_e;
-    }
-
-    public void setNIF(String NIF) {
-        this.NIF = NIF;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public void setDireccion(Direccion direccion) {
-        this.direccion = direccion;
     }
 
     public void setTarifa(int eurosMinuto) {
@@ -89,11 +39,11 @@ public abstract class Cliente {
     @Override
     public String toString() {
         return "baseDeDatos.Cliente:" +
-                "nombre='" + nombre + '\'' +
-                ", NIF='" + NIF + '\'' +
-                ", correo_e='" + correo_e + '\'' +
-                ", fecha=" + fecha +
-                ", tarifa=" + tarifa +
+                "nombre='" + nombre + '\n' +
+                ", NIF='" + NIF + '\n' +
+                ", correo_e=" + correo_e + '\n' +
+                ", fecha=" + fecha + '\n' +
+                ", tarifa=" + tarifa + '\n' +
                 ", direccion=" + direccion
                 ;
     }
