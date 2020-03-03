@@ -1,6 +1,8 @@
 package baseDeDatos.clientes.datos;
 
-public class Direccion{
+import java.io.Serializable;
+
+public class Direccion implements Serializable {
     private int CP;
     private String provincia;
     private String poblacion;

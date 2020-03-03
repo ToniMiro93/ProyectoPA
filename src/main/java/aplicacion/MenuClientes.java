@@ -8,6 +8,7 @@ import baseDeDatos.clientes.datos.Tarifa;
 import gestion.Gestion;
 
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MenuClientes implements Menu{
@@ -22,7 +23,7 @@ public class MenuClientes implements Menu{
     public void start(){
         while (true) {
             mostrarOpciones();
-            int opcion = getOpcion(6);
+            int opcion = getOpcion(7);
             switch (opcion) {
                 case 1:
                     anadirCliente();
@@ -40,6 +41,9 @@ public class MenuClientes implements Menu{
                     listarClientes();
                     break;
                 case 6:
+                    clientesEntreFechas();
+                    break;
+                case 7:
                     return;
             }
         }
@@ -64,8 +68,9 @@ public class MenuClientes implements Menu{
         System.out.println("2)Borrar cliente.");
         System.out.println("3)Cambiar tarifa de cliente.");
         System.out.println("4)Recuperar cliente.");
-        System.out.println("5)Listado de clientes.");
-        System.out.println("6)Salir del menu de clientes");
+        System.out.println("5)Listado de todos clientes.");
+        System.out.println("6)Listado de clientes de entre dos fechas.");
+        System.out.println("7)Salir del menu de clientes");
     }
     private void anadirCliente() {
         gestion.anadirCliente(crearCliente());
@@ -191,7 +196,25 @@ public class MenuClientes implements Menu{
         }
     }
 
-
-
+    public void clientesEntreFechas (){
+        System.out.println("-----------------");
+        System.out.println("Introduce fecha Inicial");
+        System.out.println("Introduce el dia:");
+        int dia=sc.nextInt();
+        System.out.println("Introduce el mes");
+        int mes=sc.nextInt();
+        System.out.println("Introduce el año");
+        int ano=sc.nextInt();
+        LocalDate fechaInicial=LocalDate.of(ano,mes,dia);
+        System.out.println("Introduce fecha fINAL");
+        System.out.println("Introduce el dia:");
+        dia=sc.nextInt();
+        System.out.println("Introduce el mes");
+        mes=sc.nextInt();
+        System.out.println("Introduce el año");
+        ano=sc.nextInt();
+        LocalDate fechaFinal=LocalDate.of(ano,mes,dia);
+        gestion.getDatosEntreFechas(gestion.listarClientes(),fechaInicial,fechaFinal);
+    }
 
 }

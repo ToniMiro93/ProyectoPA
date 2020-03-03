@@ -1,14 +1,16 @@
 package gestion;
 
+import baseDeDatos.Fecha;
 import baseDeDatos.clientes.Cliente;
 import baseDeDatos.clientes.datos.Tarifa;
 import baseDeDatos.facturas.Factura;
 import baseDeDatos.llamadas.Llamada;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 
-public class Gestion {
+public class Gestion implements Serializable {
     private GestionClientes gestorClientes;
     private GestionFacturas gestorFacturas;
 
@@ -58,4 +60,12 @@ public class Gestion {
         return gestorFacturas.listarFacturas(cliente);
     }
 
+    public <T extends Fecha> HashSet<T> getDatosEntreFechas(HashSet<T> conjunto, LocalDate fechaInicial, LocalDate fechaFinal) {
+        HashSet<T> nuevoConjunto= new HashSet<T>();
+        for(T objeto: conjunto){
+            if (objeto.getFecha().compareTo(fechaInicial)>=0 && objeto.getFecha().compareTo(fechaFinal)<=0)
+                nuevoConjunto.add(objeto);
+        }
+        return nuevoConjunto;
+    }
 }

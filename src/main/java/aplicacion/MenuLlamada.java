@@ -3,6 +3,7 @@ package aplicacion;
 import baseDeDatos.llamadas.Llamada;
 import gestion.Gestion;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MenuLlamada implements Menu{
@@ -17,7 +18,7 @@ public class MenuLlamada implements Menu{
     public void start(){
         while (true) {
             mostrarOpciones();
-            int opcion = getOpcion(3);
+            int opcion = getOpcion(4);
             switch (opcion) {
                 case 1:
                     darAltaLlamada();
@@ -26,6 +27,9 @@ public class MenuLlamada implements Menu{
                     listarLLamadas();
                     break;
                 case 3:
+                    llamadasEntreFechas();
+                    break;
+                case 4:
                     return;
             }
 
@@ -51,7 +55,8 @@ public class MenuLlamada implements Menu{
         System.out.println("----------------------------------------------");
         System.out.println("1)Añadir llamada.");
         System.out.println("2)Listar llamadas.");
-        System.out.println("3)Salir del menu de llamadas");
+        System.out.println("3)Listar llamadas realizadas entre dos fechas");
+        System.out.println("4)Salir del menu de llamadas");
     }
 
     private void darAltaLlamada(){
@@ -90,5 +95,28 @@ public class MenuLlamada implements Menu{
             case 2:
                 return;
         }
+    }
+
+    public void llamadasEntreFechas (){
+        System.out.println("-----------------");
+        System.out.println("Introduce NIF");
+        String NIF=sc.next();
+        System.out.println("Introduce fecha Inicial");
+        System.out.println("Introduce el dia:");
+        int dia=sc.nextInt();
+        System.out.println("Introduce el mes");
+        int mes=sc.nextInt();
+        System.out.println("Introduce el año");
+        int ano=sc.nextInt();
+        LocalDate fechaInicial=LocalDate.of(ano,mes,dia);
+        System.out.println("Introduce fecha fINAL");
+        System.out.println("Introduce el dia:");
+        dia=sc.nextInt();
+        System.out.println("Introduce el mes");
+        mes=sc.nextInt();
+        System.out.println("Introduce el año");
+        ano=sc.nextInt();
+        LocalDate fechaFinal=LocalDate.of(ano,mes,dia);
+        gestion.getDatosEntreFechas(gestion.listarLlamadas(gestion.recuperarCliente(NIF)),fechaInicial,fechaFinal);
     }
 }

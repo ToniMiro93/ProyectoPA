@@ -1,10 +1,12 @@
 package baseDeDatos.facturas;
 
+import baseDeDatos.Fecha;
 import baseDeDatos.clientes.datos.Tarifa;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Factura {
+public class Factura implements Serializable, Fecha {
     private static int codigoDisponible;
     private Tarifa tarifaAplicada;
     private final int codigo;
@@ -21,7 +23,8 @@ public class Factura {
         this.finalPeriodo = finalPeriodo;
     }
 
-    public LocalDate getEmision() {
+
+    public LocalDate getFecha() {
         return emision;
     }
 

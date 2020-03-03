@@ -5,11 +5,11 @@ import baseDeDatos.clientes.datos.Tarifa;
 import baseDeDatos.facturas.Factura;
 import baseDeDatos.llamadas.Llamada;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.time.LocalDate;
 
-public class GestionClientes {
+public class GestionClientes implements Serializable {
     protected HashMap<String, HashSet<Llamada>> llamadas;
     protected HashMap<String, Cliente> clientes;
 

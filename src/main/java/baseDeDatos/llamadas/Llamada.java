@@ -1,9 +1,12 @@
 package baseDeDatos.llamadas;
 
+import baseDeDatos.Fecha;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Llamada {
+public class Llamada implements Serializable, Fecha {
     private long numDest;
     private LocalDate fecha;
     private LocalTime hora;

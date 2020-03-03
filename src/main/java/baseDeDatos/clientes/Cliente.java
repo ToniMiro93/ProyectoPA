@@ -1,13 +1,15 @@
 package baseDeDatos.clientes;
 
+import baseDeDatos.Fecha;
 import baseDeDatos.clientes.datos.Direccion;
 import baseDeDatos.clientes.datos.Tarifa;
 import baseDeDatos.llamadas.Llamada;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 
-public abstract class Cliente {
+public abstract class Cliente implements Serializable, Fecha {
 
     private String nombre;
     private String NIF;
