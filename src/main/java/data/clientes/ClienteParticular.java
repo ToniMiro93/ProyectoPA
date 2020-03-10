@@ -1,12 +1,12 @@
-package baseDeDatos.clientes;
+package data.clientes;
 
-import baseDeDatos.clientes.datos.Direccion;
+import data.clientes.datos.Direccion;
 
-public class ClienteParticulares extends Cliente {
+public class ClienteParticular extends Cliente {
     private String apellido1;
 
 
-    public ClienteParticulares(String nombre, String NIF, String correo_e, Direccion direccion, String apellido1) {
+    public ClienteParticular(String nombre, String NIF, String correo_e, Direccion direccion, String apellido1) {
         super(nombre, NIF, correo_e, direccion);
         this.apellido1=apellido1;
     }

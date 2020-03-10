@@ -2,32 +2,37 @@ package aplicacion;
 
 import gestion.Gestion;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 public class MenuPrincipal implements Menu{
-    protected Scanner sc;
+    protected transient Scanner sc;
     public Gestion gestion;
+    private MenuClientes menuClientes;
+    private MenuLlamada menuLlamada;
+    private MenuFacturas menuFacturas;
 
     public MenuPrincipal(){
-        sc=new Scanner(System.in);
+
         gestion=new Gestion();
+        menuClientes = new MenuClientes(gestion);
+        menuLlamada = new MenuLlamada(gestion);
+        menuFacturas = new MenuFacturas(gestion);
     }
 
     public void start(){
+        sc=new Scanner(System.in);
         while (true) {
             mostrarOpciones();
             int opcion = getOpcion(4);
             switch (opcion) {
                 case 1:
-                    MenuClientes menuClientes = new MenuClientes(gestion);
                     menuClientes.start();
                     break;
                 case 2:
-                    MenuLlamada menuLlamada = new MenuLlamada(gestion);
                     menuLlamada.start();
                     break;
                 case 3:
-                    MenuFacturas menuFacturas = new MenuFacturas(gestion);
                     menuFacturas.start();
                     break;
                 case 4:

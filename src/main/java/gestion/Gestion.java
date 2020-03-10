@@ -1,16 +1,16 @@
 package gestion;
 
-import baseDeDatos.Fecha;
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.clientes.datos.Tarifa;
-import baseDeDatos.facturas.Factura;
-import baseDeDatos.llamadas.Llamada;
+import data.Fecha;
+import data.clientes.Cliente;
+import data.clientes.datos.Tarifa;
+import data.facturas.Factura;
+import data.llamadas.Llamada;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 
-public class Gestion implements Serializable {
+public class Gestion implements Serializable{
     private GestionClientes gestorClientes;
     private GestionFacturas gestorFacturas;
 
@@ -68,4 +68,8 @@ public class Gestion implements Serializable {
         }
         return nuevoConjunto;
     }
+
+//    private String convertHashToString(HashSet conjunto){
+//        return"hola2";
+//    }
 }

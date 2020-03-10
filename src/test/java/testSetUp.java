@@ -1,6 +1,6 @@
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.clientes.ClienteParticulares;
-import baseDeDatos.clientes.datos.Direccion;
+import data.clientes.Cliente;
+import data.clientes.ClienteParticular;
+import data.clientes.datos.Direccion;
 import es.uji.www.GeneradorDatosINE;
 import gestion.Gestion;
 
@@ -26,6 +26,6 @@ public class testSetUp {
         int cp=12000;
         Direccion direccion=new Direccion(cp,provincia,poblacion);
 
-        return new ClienteParticulares(nombre,NIF,correo,direccion,generador.getApellido());
+        return new ClienteParticular(nombre,NIF,correo,direccion,generador.getApellido());
     }
 }

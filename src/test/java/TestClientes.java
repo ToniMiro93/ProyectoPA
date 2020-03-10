@@ -1,4 +1,4 @@
-import baseDeDatos.clientes.Cliente;
+import data.clientes.Cliente;
 import gestion.Gestion;
 import org.junit.Test;
 

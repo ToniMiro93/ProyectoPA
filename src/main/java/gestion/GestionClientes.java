@@ -1,9 +1,8 @@
 package gestion;
 
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.clientes.datos.Tarifa;
-import baseDeDatos.facturas.Factura;
-import baseDeDatos.llamadas.Llamada;
+import data.clientes.Cliente;
+import data.clientes.datos.Tarifa;
+import data.llamadas.Llamada;
 
 import java.io.Serializable;
 import java.util.HashMap;

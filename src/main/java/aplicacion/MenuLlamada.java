@@ -1,6 +1,6 @@
 package aplicacion;
 
-import baseDeDatos.llamadas.Llamada;
+import data.llamadas.Llamada;
 import gestion.Gestion;
 
 import java.time.LocalDate;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class MenuLlamada implements Menu{
 
-    public Scanner sc = new Scanner(System.in);
+    public transient Scanner sc;
     private Gestion gestion;
 
     public MenuLlamada(Gestion gestion) {
@@ -16,6 +16,7 @@ public class MenuLlamada implements Menu{
     }
 
     public void start(){
+        sc=new Scanner(System.in);
         while (true) {
             mostrarOpciones();
             int opcion = getOpcion(4);

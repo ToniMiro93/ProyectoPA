@@ -1,7 +1,7 @@
-package baseDeDatos.facturas;
+package data.facturas;
 
-import baseDeDatos.Fecha;
-import baseDeDatos.clientes.datos.Tarifa;
+import data.Fecha;
+import data.clientes.datos.Tarifa;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -50,7 +50,7 @@ public class Factura implements Serializable, Fecha {
 
     @Override
     public String toString() {
-        return "baseDeDatos.facturas.Factura{" + '\n' +
+        return "data.facturas.Factura{" + '\n' +
                 "tarifaAplicada=" + tarifaAplicada + '\n' +
                 ", codigo=" + codigo + '\n' +
                 ", emision=" + emision + '\n' +

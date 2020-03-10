@@ -1,7 +1,7 @@
 package aplicacion;
 
-import baseDeDatos.clientes.ClienteEmpresas;
-import baseDeDatos.clientes.datos.Direccion;
+import data.clientes.ClienteEmpresa;
+import data.clientes.datos.Direccion;
 import gestion.Gestion;
 
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class MenuFacturas implements Menu{
 
-    public Scanner sc = new Scanner(System.in);
+    public transient Scanner sc;
     private Gestion gestion;
 
     public MenuFacturas(Gestion gestion) {
@@ -17,6 +17,7 @@ public class MenuFacturas implements Menu{
     }
 
     public void start(){
+        sc=new Scanner(System.in);
         while (true) {
             mostrarOpciones();
             int opcion = getOpcion(5);
@@ -91,7 +92,7 @@ public class MenuFacturas implements Menu{
                 System.out.print("Año:");
                 ano=sc.nextInt();
                 LocalDate fechaFin=LocalDate.of(ano,mes,dia);
-                gestion.emitirFactura(new ClienteEmpresas("Pepe",
+                gestion.emitirFactura(new ClienteEmpresa("Pepe",
                         "11111111T", "pepe@email.es", new Direccion(1200,"castellon",
                         "castellon")),fechaInicio,fechaFin);
                 break;

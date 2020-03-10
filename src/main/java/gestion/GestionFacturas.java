@@ -1,8 +1,8 @@
 package gestion;
 
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.facturas.Factura;
-import baseDeDatos.llamadas.Llamada;
+import data.clientes.Cliente;
+import data.facturas.Factura;
+import data.llamadas.Llamada;
 
 import java.io.Serializable;
 import java.time.LocalDate;

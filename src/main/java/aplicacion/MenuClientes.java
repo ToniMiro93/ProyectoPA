@@ -1,19 +1,19 @@
 package aplicacion;
 
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.clientes.ClienteEmpresas;
-import baseDeDatos.clientes.ClienteParticulares;
-import baseDeDatos.clientes.datos.Direccion;
-import baseDeDatos.clientes.datos.Tarifa;
+import data.clientes.Cliente;
+import data.clientes.ClienteEmpresa;
+import data.clientes.ClienteParticular;
+import data.clientes.datos.Direccion;
+import data.clientes.datos.Tarifa;
 import gestion.Gestion;
 
-import java.sql.SQLOutput;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MenuClientes implements Menu{
 
-    public Scanner sc = new Scanner(System.in);
+    public transient Scanner sc;
     private Gestion gestion;
 
     public MenuClientes(Gestion gestion) {
@@ -21,6 +21,7 @@ public class MenuClientes implements Menu{
     }
 
     public void start(){
+        sc=new Scanner(System.in);
         while (true) {
             mostrarOpciones();
             int opcion = getOpcion(7);
@@ -112,10 +113,10 @@ public class MenuClientes implements Menu{
             case 1:
                 System.out.print("Apellido:");
                 String apellido=sc.next();
-                nuevoCliente=new ClienteParticulares(nombre,NIF,email,direccion,apellido);
+                nuevoCliente=new ClienteParticular(nombre,NIF,email,direccion,apellido);
                 break;
             case 2:
-                nuevoCliente=new ClienteEmpresas(nombre,NIF,email,direccion);
+                nuevoCliente=new ClienteEmpresa(nombre,NIF,email,direccion);
                 break;
         }
         return nuevoCliente;

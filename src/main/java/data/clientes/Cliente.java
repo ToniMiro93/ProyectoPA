@@ -1,9 +1,9 @@
-package baseDeDatos.clientes;
+package data.clientes;
 
-import baseDeDatos.Fecha;
-import baseDeDatos.clientes.datos.Direccion;
-import baseDeDatos.clientes.datos.Tarifa;
-import baseDeDatos.llamadas.Llamada;
+import data.Fecha;
+import data.clientes.datos.Direccion;
+import data.clientes.datos.Tarifa;
+import data.llamadas.Llamada;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ public abstract class Cliente implements Serializable, Fecha {
 
     private String nombre;
     private String NIF;
-    private String correo_e;
+    private String correoElectronico;
     private LocalDate fecha;
     private Tarifa tarifa;
     private Direccion direccion;
@@ -23,7 +23,7 @@ public abstract class Cliente implements Serializable, Fecha {
         this.nombre=nombre;
         this.NIF=NIF;
         this.fecha=LocalDate.now();
-        this.correo_e=correo_e;
+        this.correoElectronico =correo_e;
         this.tarifa=new Tarifa(1);
         this.direccion=direccion;
     }
@@ -50,15 +50,18 @@ public abstract class Cliente implements Serializable, Fecha {
 
     @Override
     public String toString() {
-        return "baseDeDatos.clientes.Cliente:" + '\n' +
+        return "data.clientes.Cliente:" + '\n' +
                 "nombre='" + nombre + '\n' +
                 "NIF='" + NIF + '\n' +
-                "correo_e=" + correo_e + '\n' +
+                "correoElectronico=" + correoElectronico + '\n' +
                 "fecha=" + fecha + '\n' +
                 "tarifa=" + tarifa + '\n' +
                 "direccion=" + direccion
                 ;
     }
 
-
+    @Override
+    public LocalDate getFecha() {
+        return fecha;
+    }
 }

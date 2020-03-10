@@ -1,4 +1,4 @@
-package baseDeDatos;
+package data;
 
 import java.time.LocalDate;
 

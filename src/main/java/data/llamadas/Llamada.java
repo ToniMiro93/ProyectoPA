@@ -1,6 +1,6 @@
-package baseDeDatos.llamadas;
+package data.llamadas;
 
-import baseDeDatos.Fecha;
+import data.Fecha;
 
 import java.io.Serializable;
 import java.time.LocalDate;
