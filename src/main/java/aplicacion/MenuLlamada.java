@@ -1,6 +1,6 @@
 package aplicacion;
 
-import data.llamadas.Llamada;
+import data.llamada.Llamada;
 import gestion.Gestion;
 
 import java.time.LocalDate;
@@ -52,12 +52,12 @@ public class MenuLlamada implements Menu{
 
     @Override
     public void mostrarOpciones() {
-        System.out.println("Menú de gestion de llamadas de telefonia v1.0");
+        System.out.println("Menú de gestion de llamada de telefonia v1.0");
         System.out.println("----------------------------------------------");
         System.out.println("1)Añadir llamada.");
-        System.out.println("2)Listar llamadas.");
-        System.out.println("3)Listar llamadas realizadas entre dos fechas");
-        System.out.println("4)Salir del menu de llamadas");
+        System.out.println("2)Listar llamada.");
+        System.out.println("3)Listar llamada realizadas entre dos fechas");
+        System.out.println("4)Salir del menu de llamada");
     }
 
     private void darAltaLlamada(){
@@ -84,7 +84,7 @@ public class MenuLlamada implements Menu{
 
     private void listarLLamadas() {
         System.out.println("-----------------");
-        System.out.println("1)Mostrar Listado de llamadas de un cliente");
+        System.out.println("1)Mostrar Listado de llamada de un cliente");
         System.out.println("2)(atras)");
         System.out.println("Escoge una opcion:");
         int opcion = getOpcion(2);

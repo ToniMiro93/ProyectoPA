@@ -1,6 +1,6 @@
-package data.clientes;
+package data.cliente;
 
-import data.clientes.datos.Direccion;
+import data.cliente.datos.Direccion;
 
 public class ClienteEmpresa extends Cliente {
 

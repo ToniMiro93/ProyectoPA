@@ -1,4 +1,4 @@
-package data.clientes.datos;
+package data.cliente.datos;
 
 import java.io.Serializable;
 

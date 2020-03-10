@@ -1,7 +1,7 @@
 package aplicacion;
 
-import data.clientes.ClienteEmpresa;
-import data.clientes.datos.Direccion;
+import data.cliente.ClienteEmpresa;
+import data.cliente.datos.Direccion;
 import gestion.Gestion;
 
 import java.time.LocalDate;

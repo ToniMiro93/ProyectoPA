@@ -44,10 +44,10 @@ public class MenuPrincipal implements Menu{
     }
 
     public void mostrarOpciones(){
-        System.out.println("Menu de gestion de clientes de telefonia v1.0");
+        System.out.println("Menu de gestion de cliente de telefonia v1.0");
         System.out.println("----------------------------------------------");
-        System.out.println("1)Gestionar clientes.");
-        System.out.println("2)Gestionar llamadas de un cliente.");
+        System.out.println("1)Gestionar cliente.");
+        System.out.println("2)Gestionar llamada de un cliente.");
         System.out.println("3)Gestionar facturación de un cliente.");
         System.out.println("4)Salir.");
         System.out.print("Elige la opcion que desee realizar:");

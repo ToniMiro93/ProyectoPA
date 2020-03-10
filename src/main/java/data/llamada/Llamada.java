@@ -1,4 +1,4 @@
-package data.llamadas;
+package data.llamada;
 
 import data.Fecha;
 

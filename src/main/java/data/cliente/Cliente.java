@@ -1,9 +1,9 @@
-package data.clientes;
+package data.cliente;
 
 import data.Fecha;
-import data.clientes.datos.Direccion;
-import data.clientes.datos.Tarifa;
-import data.llamadas.Llamada;
+import data.cliente.datos.Direccion;
+import data.cliente.datos.Tarifa;
+import data.llamada.Llamada;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -50,15 +50,20 @@ public abstract class Cliente implements Serializable, Fecha {
 
     @Override
     public String toString() {
-        return "data.clientes.Cliente:" + '\n' +
-                "nombre='" + nombre + '\n' +
-                "NIF='" + NIF + '\n' +
-                "correoElectronico=" + correoElectronico + '\n' +
-                "fecha=" + fecha + '\n' +
-                "tarifa=" + tarifa + '\n' +
-                "direccion=" + direccion
+        return "Cliente:" + '\n' +
+//                "\t" + metodo privado + '\n' +
+                "\tnombre='" + nombre + '\n' +
+                "\tNIF='" + NIF + '\n' +
+                "\tcorreoElectronico=" + correoElectronico + '\n' +
+                "\tfecha=" + fecha + '\n' +
+                "\ttarifa=" + tarifa + '\n' +
+                "\tdireccion=" + direccion
                 ;
     }
+
+//    private String mostrarNombe(Cliente){
+//        if ()
+//    }
 
     @Override
     public LocalDate getFecha() {

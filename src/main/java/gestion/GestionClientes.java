@@ -1,8 +1,8 @@
 package gestion;
 
-import data.clientes.Cliente;
-import data.clientes.datos.Tarifa;
-import data.llamadas.Llamada;
+import data.cliente.Cliente;
+import data.cliente.datos.Tarifa;
+import data.llamada.Llamada;
 
 import java.io.Serializable;
 import java.util.HashMap;

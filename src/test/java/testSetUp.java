@@ -1,12 +1,12 @@
-import data.clientes.Cliente;
-import data.clientes.ClienteParticular;
-import data.clientes.datos.Direccion;
+import data.cliente.Cliente;
+import data.cliente.ClienteParticular;
+import data.cliente.datos.Direccion;
 import es.uji.www.GeneradorDatosINE;
 import gestion.Gestion;
 
 public class testSetUp {
 
-    //Generación de una muestra de 20 clientes aleatoria
+    //Generación de una muestra de 20 cliente aleatoria
     static Gestion crearDatosMuestra(){
         Gestion gestion = new Gestion();
         for(int i = 0; i < 20; i++){

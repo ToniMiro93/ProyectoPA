@@ -1,10 +1,10 @@
 package gestion;
 
 import data.Fecha;
-import data.clientes.Cliente;
-import data.clientes.datos.Tarifa;
+import data.cliente.Cliente;
+import data.cliente.datos.Tarifa;
 import data.facturas.Factura;
-import data.llamadas.Llamada;
+import data.llamada.Llamada;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -69,7 +69,10 @@ public class Gestion implements Serializable{
         return nuevoConjunto;
     }
 
-//    private String convertHashToString(HashSet conjunto){
-//        return"hola2";
-//    }
+    private <T> String convertHashToString(HashSet<T> conjunto){
+        String resultado = null;
+        for (T elemento : conjunto)
+            resultado = resultado + elemento.toString() + "\n";
+        return resultado;
+    }
 }

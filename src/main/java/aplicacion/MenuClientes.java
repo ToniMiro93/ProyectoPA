@@ -1,13 +1,12 @@
 package aplicacion;
 
-import data.clientes.Cliente;
-import data.clientes.ClienteEmpresa;
-import data.clientes.ClienteParticular;
-import data.clientes.datos.Direccion;
-import data.clientes.datos.Tarifa;
+import data.cliente.Cliente;
+import data.cliente.ClienteEmpresa;
+import data.cliente.ClienteParticular;
+import data.cliente.datos.Direccion;
+import data.cliente.datos.Tarifa;
 import gestion.Gestion;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -63,15 +62,15 @@ public class MenuClientes implements Menu{
 
     @Override
     public void mostrarOpciones() {
-        System.out.println("Menú de gestion de clientes de telefonia v1.0");
+        System.out.println("Menú de gestion de cliente de telefonia v1.0");
         System.out.println("----------------------------------------------");
         System.out.println("1)Añadir cliente.");
         System.out.println("2)Borrar cliente.");
         System.out.println("3)Cambiar tarifa de cliente.");
         System.out.println("4)Recuperar cliente.");
-        System.out.println("5)Listado de todos clientes.");
-        System.out.println("6)Listado de clientes de entre dos fechas.");
-        System.out.println("7)Salir del menu de clientes");
+        System.out.println("5)Listado de todos cliente.");
+        System.out.println("6)Listado de cliente de entre dos fechas.");
+        System.out.println("7)Salir del menu de cliente");
     }
     private void anadirCliente() {
         gestion.anadirCliente(crearCliente());
@@ -180,7 +179,7 @@ public class MenuClientes implements Menu{
 
     private void listarClientes(){
         System.out.println("-----------------");
-        System.out.println("1)Mostrar Listado de clientes");
+        System.out.println("1)Mostrar Listado de cliente");
         System.out.println("2)(atras)");
         System.out.println("Escoge una opcion:");
         int opcion = getOpcion(2);
