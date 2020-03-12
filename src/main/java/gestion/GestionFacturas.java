@@ -9,16 +9,17 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class GestionFacturas implements Serializable {
-    protected HashMap<Integer, Factura> codFacturas;
-    protected HashMap<String, HashSet<Factura>> facturas;
+class GestionFacturas implements Serializable {
 
-    protected GestionFacturas() {
+    private HashMap<Integer, Factura> codFacturas;
+    private HashMap<String, HashSet<Factura>> facturas;
+
+    GestionFacturas() {
         this.codFacturas = new HashMap<>();
         this.facturas=new HashMap<>();
     }
 
-    protected void borrarFacturas(String NIF){
+    void borrarFacturas(String NIF){
         HashSet<Factura> facturasCliente = facturas.get(NIF);
         if (facturasCliente != null) {
             for (Factura factura : facturasCliente) {
@@ -28,7 +29,7 @@ public class GestionFacturas implements Serializable {
         }
     }
 
-    protected void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal){
+    void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal){
         LocalDate fechaHoy = LocalDate.now();
         Factura factura = new Factura(cliente.getTarifa(), fechaHoy, fechaInicial, fechaFinal);
         factura.setImporte(calcularImporte(factura, cliente));
@@ -45,18 +46,18 @@ public class GestionFacturas implements Serializable {
         return sumaImporte;
     }
 
-    private void anadirFactura(Cliente cliente, Factura factura){
+    private void anadirFactura(Cliente cliente, Factura nuevaFactura){
         if (facturas.get(cliente) == null)
             facturas.put(cliente.getNIF(), new HashSet<>());
-        facturas.get(cliente.getNIF()).add(factura);
-        codFacturas.put(factura.getCodigo(), factura);
+        facturas.get(cliente.getNIF()).add(nuevaFactura);
+        codFacturas.put(nuevaFactura.getCodigo(), nuevaFactura);
     }
 
-    protected Factura recuperarFactura(int cod){
+    Factura recuperarFactura(int cod){
         return codFacturas.get(cod);
     }
 
-    protected HashSet<Factura> listarFacturas(Cliente cliente){
+    HashSet<Factura> listarFacturas(Cliente cliente){
         return facturas.get(cliente.getNIF());
     }
 }

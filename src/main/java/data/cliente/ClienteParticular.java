@@ -3,17 +3,16 @@ package data.cliente;
 import data.cliente.datos.Direccion;
 
 public class ClienteParticular extends Cliente {
-    private String apellido1;
+    private String apellidos;
 
 
-    public ClienteParticular(String nombre, String NIF, String correo_e, Direccion direccion, String apellido1) {
+    public ClienteParticular(String nombre, String NIF, String correo_e, Direccion direccion, String apellidos) {
         super(nombre, NIF, correo_e, direccion);
-        this.apellido1=apellido1;
+        this.apellidos = apellidos;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + "\n" +
-                "apellido1='" + apellido1;
+    private String mostrarNombre(){
+        return "\tnombre = " + super.getNombre() + '\n' +
+               "\tapellidos = " + apellidos + '\n';
     }
 }

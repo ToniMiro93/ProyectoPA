@@ -5,12 +5,12 @@ import data.cliente.Cliente;
 import data.cliente.datos.Tarifa;
 import data.facturas.Factura;
 import data.llamada.Llamada;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 
 public class Gestion implements Serializable{
+
     private GestionClientes gestorClientes;
     private GestionFacturas gestorFacturas;
 
@@ -19,8 +19,8 @@ public class Gestion implements Serializable{
         this.gestorFacturas = new GestionFacturas();
     }
 
-    public void anadirCliente(Cliente cliente){
-        gestorClientes.nuevoCliente(cliente);
+    public void anadirCliente(Cliente nuevoCliente){
+        gestorClientes.nuevoCliente(nuevoCliente);
     }
 
     public void borrarCliente(String NIF){
@@ -32,16 +32,20 @@ public class Gestion implements Serializable{
         gestorClientes.cambiarTarifa(cliente, tarifa);
     }
 
+    // @todo
+    // XXX: hay que juntar el recuperar de Clientes y Facturas
     public Cliente recuperarCliente(String NIF){
         return gestorClientes.datosCliente(NIF);
     }
 
+    // @todo
+    // XXX: hay que juntar todos los listar de clientes, facturas y llamadas
     public HashSet<Cliente> listarClientes(){
         return gestorClientes.listadoClientes();
     }
 
-    public void anadirLlamada(Cliente cliente, Llamada llamada){
-        gestorClientes.anadirLlamada(cliente, llamada);
+    public void anadirLlamada(Cliente cliente, Llamada nuevaLlamada){
+        gestorClientes.anadirLlamada(cliente, nuevaLlamada);
     }
 
     public HashSet<Llamada> listarLlamadas(Cliente cliente){
@@ -61,8 +65,8 @@ public class Gestion implements Serializable{
     }
 
     public <T extends Fecha> HashSet<T> getDatosEntreFechas(HashSet<T> conjunto, LocalDate fechaInicial, LocalDate fechaFinal) {
-        HashSet<T> nuevoConjunto= new HashSet<T>();
-        for(T objeto: conjunto){
+        HashSet<T> nuevoConjunto = new HashSet<T>();
+        for (T objeto: conjunto) {
             if (objeto.getFecha().compareTo(fechaInicial)>=0 && objeto.getFecha().compareTo(fechaFinal)<=0)
                 nuevoConjunto.add(objeto);
         }

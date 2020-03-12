@@ -3,7 +3,8 @@ package data.cliente.datos;
 import java.io.Serializable;
 
 public class Tarifa implements Serializable {
-    private int eurosMinuto=1;
+
+    private int eurosMinuto;
 
     public Tarifa(int eurosMinuto) {
         this.eurosMinuto = eurosMinuto;
