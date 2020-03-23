@@ -53,7 +53,9 @@ public class Gestion implements Serializable{
     }
 
     public void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal){
-        gestorFacturas.emitirFactura(cliente, fechaInicial, fechaFinal);
+        HashSet<Llamada> llamadasRealizadas = Utilidades.filtrarElementosEntreFechas(gestorClientes.listadoLlamadas(cliente), fechaInicial, fechaFinal);
+        double importe = gestorFacturas.calcularImporte(cliente, llamadasRealizadas);
+        gestorFacturas.emitirFactura(cliente, fechaInicial, fechaFinal, importe);
     }
 
     public Factura recuperarFactura(int cod){
@@ -65,18 +67,6 @@ public class Gestion implements Serializable{
     }
 
     public <T extends Fecha> HashSet<T> getDatosEntreFechas(HashSet<T> conjunto, LocalDate fechaInicial, LocalDate fechaFinal) {
-        HashSet<T> nuevoConjunto = new HashSet<T>();
-        for (T objeto: conjunto) {
-            if (objeto.getFecha().compareTo(fechaInicial)>=0 && objeto.getFecha().compareTo(fechaFinal)<=0)
-                nuevoConjunto.add(objeto);
-        }
-        return nuevoConjunto;
-    }
-
-    private <T> String convertHashToString(HashSet<T> conjunto){
-        String resultado = null;
-        for (T elemento : conjunto)
-            resultado = resultado + elemento.toString() + "\n";
-        return resultado;
+        return Utilidades.filtrarElementosEntreFechas(conjunto, fechaInicial, fechaFinal);
     }
 }

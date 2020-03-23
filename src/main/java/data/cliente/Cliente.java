@@ -32,7 +32,7 @@ public abstract class Cliente implements Serializable, Fecha {
     public String getNIF() {
         return NIF;
     }
-
+    
     public Tarifa getTarifa() {
         return tarifa;
     }

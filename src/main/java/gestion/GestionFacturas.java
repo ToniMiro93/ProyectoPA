@@ -29,19 +29,16 @@ class GestionFacturas implements Serializable {
         }
     }
 
-    void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal){
+    void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal, double importe) {
         LocalDate fechaHoy = LocalDate.now();
-        Factura factura = new Factura(cliente.getTarifa(), fechaHoy, fechaInicial, fechaFinal);
-        factura.setImporte(calcularImporte(factura, cliente));
+        Factura factura = new Factura(cliente.getTarifa(), fechaHoy, fechaInicial, fechaFinal, importe);
         anadirFactura(cliente, factura);
     }
 
-    private double calcularImporte(Factura factura,Cliente cliente){
+    double calcularImporte(Cliente cliente, HashSet<Llamada> llamadasRealizadas){
         double sumaImporte = 0;
-        for(Llamada llamada: cliente.getLlamadas()){
-            if (llamada.getFecha().compareTo(factura.getInicioPeriodo())>=0 && llamada.getFecha().compareTo(factura.getFinalPeriodo())<=0){
-                sumaImporte += llamada.getDuracion()*cliente.getTarifa().getEurosMinuto();
-            }
+        for(Llamada llamada: llamadasRealizadas){
+            sumaImporte += llamada.getDuracion()*cliente.getTarifa().getEurosMinuto();
         }
         return sumaImporte;
     }
