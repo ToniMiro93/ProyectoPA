@@ -7,7 +7,7 @@ import gestion.Gestion;
 public class testSetUp {
 
     //Generación de una muestra de 20 cliente aleatoria
-    static Gestion crearDatosMuestra(){
+    public static Gestion crearDatosMuestra(){
         Gestion gestion = new Gestion();
         for(int i = 0; i < 20; i++){
             gestion.anadirCliente(crearCliente());
@@ -15,7 +15,7 @@ public class testSetUp {
         return gestion;
     }
 
-    static Cliente crearCliente(){
+    public static Cliente crearCliente(){
         GeneradorDatosINE generador=new GeneradorDatosINE();
 
         String nombre=generador.getNombre();

@@ -32,7 +32,7 @@ public abstract class Cliente implements Serializable, Fecha {
     public String getNIF() {
         return NIF;
     }
-    
+
     public Tarifa getTarifa() {
         return tarifa;
     }
@@ -54,8 +54,6 @@ public abstract class Cliente implements Serializable, Fecha {
                 ;
     }
 
-    // @todo
-    // Asegurarse de que el metodo mostrar nombre funciona bien
     private String mostrarNombre(){
         return "\tnombre = " + nombre + '\n';
     }

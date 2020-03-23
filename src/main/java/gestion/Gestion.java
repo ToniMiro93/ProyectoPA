@@ -5,6 +5,8 @@ import data.cliente.Cliente;
 import data.cliente.datos.Tarifa;
 import data.facturas.Factura;
 import data.llamada.Llamada;
+import gestion.excepciones.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -24,24 +26,37 @@ public class Gestion implements Serializable{
     }
 
     public void borrarCliente(String NIF){
-        gestorClientes.borrarCliente(NIF);
-        gestorFacturas.borrarFacturas(NIF);
+        try {
+            gestorClientes.borrarCliente(NIF);
+            gestorFacturas.borrarFacturas(NIF);
+        }
+        catch (ClienteNotFoundException e){
+            e.printStackTrace();
+        }
     }
 
     public void cambiarTarifa(Cliente cliente, Tarifa tarifa){
         gestorClientes.cambiarTarifa(cliente, tarifa);
     }
 
-    // @todo
-    // XXX: hay que juntar el recuperar de Clientes y Facturas
     public Cliente recuperarCliente(String NIF){
-        return gestorClientes.datosCliente(NIF);
+        try {
+            return gestorClientes.datosCliente(NIF);
+        }
+        catch (ClienteNotFoundException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    // @todo
-    // XXX: hay que juntar todos los listar de clientes, facturas y llamadas
     public HashSet<Cliente> listarClientes(){
-        return gestorClientes.listadoClientes();
+        try {
+            return gestorClientes.listadoClientes();
+        }
+        catch (ListaDeClientesVaciaException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void anadirLlamada(Cliente cliente, Llamada nuevaLlamada){
@@ -49,24 +64,61 @@ public class Gestion implements Serializable{
     }
 
     public HashSet<Llamada> listarLlamadas(Cliente cliente){
-        return gestorClientes.listadoLlamadas(cliente);
+        try {
+            return gestorClientes.listadoLlamadas(cliente);
+        }
+        catch (ListaDeLlamadasVaciaException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal){
-        HashSet<Llamada> llamadasRealizadas = Utilidades.filtrarElementosEntreFechas(gestorClientes.listadoLlamadas(cliente), fechaInicial, fechaFinal);
-        double importe = gestorFacturas.calcularImporte(cliente, llamadasRealizadas);
-        gestorFacturas.emitirFactura(cliente, fechaInicial, fechaFinal, importe);
+        try {
+            HashSet<Llamada> llamadasRealizadas = Utilidades.filtrarElementosEntreFechas(gestorClientes.listadoLlamadas(cliente), fechaInicial, fechaFinal);
+            double importe = gestorFacturas.calcularImporte(cliente, llamadasRealizadas);
+            gestorFacturas.emitirFactura(cliente, fechaInicial, fechaFinal, importe);
+        }
+        catch (ListaDeLlamadasVaciaException e){
+            e.printStackTrace();
+            gestorFacturas.emitirFactura(cliente, fechaInicial, fechaFinal, 0);
+        }
+        catch (ElementosNoEncontradosException e){
+            e.printStackTrace();
+            gestorFacturas.emitirFactura(cliente, fechaInicial, fechaFinal, 0);
+        }
+        catch (IllegalArgumentException e){
+            e.printStackTrace();
+        }
     }
 
     public Factura recuperarFactura(int cod){
-        return gestorFacturas.recuperarFactura(cod);
+        try {
+            return gestorFacturas.recuperarFactura(cod);
+        }
+        catch (FacturaNotFoundException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public HashSet<Factura> listarFacturas(Cliente cliente){
-        return gestorFacturas.listarFacturas(cliente);
+        try {
+            return gestorFacturas.listarFacturas(cliente);
+        }
+        catch (ListaDeFacturasVaciaException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public <T extends Fecha> HashSet<T> getDatosEntreFechas(HashSet<T> conjunto, LocalDate fechaInicial, LocalDate fechaFinal) {
-        return Utilidades.filtrarElementosEntreFechas(conjunto, fechaInicial, fechaFinal);
+        try {
+            return Utilidades.filtrarElementosEntreFechas(conjunto, fechaInicial, fechaFinal);
+        }
+        catch (ElementosNoEncontradosException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }
