@@ -13,12 +13,12 @@ public class MenuPrincipal implements Menu{
     private MenuFacturas menuFacturas;
 
     public MenuPrincipal(){
-
         gestion=new Gestion();
         menuClientes = new MenuClientes(gestion);
         menuLlamada = new MenuLlamada(gestion);
         menuFacturas = new MenuFacturas(gestion);
     }
+
 
     public void start(){
         sc=new Scanner(System.in);
