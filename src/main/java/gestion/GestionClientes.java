@@ -3,6 +3,10 @@ package gestion;
 import data.cliente.Cliente;
 import data.cliente.datos.Tarifa;
 import data.llamada.Llamada;
+import gestion.excepciones.ClienteNotFoundException;
+import gestion.excepciones.ListaDeClientesVaciaException;
+import gestion.excepciones.ListaDeLlamadasVaciaException;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,24 +27,27 @@ class GestionClientes implements Serializable {
         llamadas.put(nuevoCliente.getNIF(), new HashSet<>());
     }
 
-    void borrarCliente(String NIF) {
-        clientes.remove(NIF);
+    void borrarCliente(String NIF) throws ClienteNotFoundException {
+        if (clientes.remove(NIF) == null) throw new ClienteNotFoundException();
         llamadas.remove(NIF);
     }
 
-    void cambiarTarifa(Cliente cliente, Tarifa tarifa){
+    void cambiarTarifa(Cliente cliente, Tarifa tarifa) {
         cliente.setTarifa(tarifa);
     }
 
-    Cliente datosCliente(String NIF){
-        return clientes.get(NIF);
+    Cliente datosCliente(String NIF) throws ClienteNotFoundException {
+        Cliente cliente = clientes.get(NIF);
+        if (cliente == null) throw new ClienteNotFoundException();
+        return cliente;
     }
 
-    HashSet<Cliente> listadoClientes(){
+    HashSet<Cliente> listadoClientes() throws ListaDeClientesVaciaException {
         HashSet<Cliente> lista = new HashSet<>();
         for (String NIF : clientes.keySet()){
             lista.add(clientes.get(NIF));
         }
+        if (lista.isEmpty()) throw new ListaDeClientesVaciaException();
         return lista;
     }
 
@@ -48,8 +55,10 @@ class GestionClientes implements Serializable {
         llamadas.get(cliente.getNIF()).add(nuevaLlamada);
     }
 
-    HashSet<Llamada> listadoLlamadas(Cliente cliente){
-        return llamadas.get(cliente.getNIF());
+    HashSet<Llamada> listadoLlamadas(Cliente cliente) throws ListaDeLlamadasVaciaException {
+        HashSet<Llamada> listado = llamadas.get(cliente.getNIF());
+        if (listado.isEmpty()) throw new ListaDeLlamadasVaciaException();
+        return listado;
     }
 
 }

@@ -3,6 +3,8 @@ package gestion;
 import data.cliente.Cliente;
 import data.facturas.Factura;
 import data.llamada.Llamada;
+import gestion.excepciones.FacturaNotFoundException;
+import gestion.excepciones.ListaDeFacturasVaciaException;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -29,7 +31,9 @@ class GestionFacturas implements Serializable {
         }
     }
 
-    void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal, double importe) {
+    void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal, double importe) throws IllegalArgumentException{
+        if (fechaFinal.compareTo(fechaInicial) <= 0)
+            throw new IllegalArgumentException("La fecha inicial no puede ser posterior a la final");
         LocalDate fechaHoy = LocalDate.now();
         Factura factura = new Factura(cliente.getTarifa(), fechaHoy, fechaInicial, fechaFinal, importe);
         anadirFactura(cliente, factura);
@@ -50,11 +54,15 @@ class GestionFacturas implements Serializable {
         codFacturas.put(nuevaFactura.getCodigo(), nuevaFactura);
     }
 
-    Factura recuperarFactura(int cod){
+    Factura recuperarFactura(int cod) throws FacturaNotFoundException {
+        Factura factura = codFacturas.get(cod);
+        if (factura == null) throw new FacturaNotFoundException();
         return codFacturas.get(cod);
     }
 
-    HashSet<Factura> listarFacturas(Cliente cliente){
-        return facturas.get(cliente.getNIF());
+    HashSet<Factura> listarFacturas(Cliente cliente) throws ListaDeFacturasVaciaException {
+        HashSet<Factura> listado = facturas.get(cliente.getNIF());
+        if (listado.isEmpty()) throw new ListaDeFacturasVaciaException();
+        return listado;
     }
 }

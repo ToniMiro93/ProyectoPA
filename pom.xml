@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>es.uji.al286283</groupId>
-    <artifactId>ProyectoPA</artifactId>
+    <artifactId>ProyectoMiroPadilla</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <finalName>aritmetica</finalName>

@@ -3,6 +3,8 @@ package aplicacion;
 import data.cliente.ClienteEmpresa;
 import data.cliente.datos.Direccion;
 import gestion.Gestion;
+import gestion.excepciones.ListaDeFacturasVaciaException;
+import gestion.excepciones.ListaDeLlamadasVaciaException;
 
 import java.time.LocalDate;
 import java.util.Scanner;
