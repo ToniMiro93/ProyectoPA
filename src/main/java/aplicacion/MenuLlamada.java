@@ -1,13 +1,14 @@
 package aplicacion;
 
-import baseDeDatos.llamadas.Llamada;
+import data.llamada.Llamada;
 import gestion.Gestion;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class MenuLlamada implements Menu{
 
-    public Scanner sc = new Scanner(System.in);
+    public transient Scanner sc;
     private Gestion gestion;
 
     public MenuLlamada(Gestion gestion) {
@@ -15,9 +16,10 @@ public class MenuLlamada implements Menu{
     }
 
     public void start(){
+        sc=new Scanner(System.in);
         while (true) {
             mostrarOpciones();
-            int opcion = getOpcion(3);
+            int opcion = getOpcion(4);
             switch (opcion) {
                 case 1:
                     darAltaLlamada();
@@ -26,6 +28,9 @@ public class MenuLlamada implements Menu{
                     listarLLamadas();
                     break;
                 case 3:
+                    llamadasEntreFechas();
+                    break;
+                case 4:
                     return;
             }
 
@@ -47,11 +52,12 @@ public class MenuLlamada implements Menu{
 
     @Override
     public void mostrarOpciones() {
-        System.out.println("Menú de gestion de llamadas de telefonia v1.0");
+        System.out.println("Menú de gestion de llamada de telefonia v1.0");
         System.out.println("----------------------------------------------");
         System.out.println("1)Añadir llamada.");
-        System.out.println("2)Listar llamadas.");
-        System.out.println("3)Salir del menu de llamadas");
+        System.out.println("2)Listar llamada.");
+        System.out.println("3)Listar llamada realizadas entre dos fechas");
+        System.out.println("4)Salir del menu de llamada");
     }
 
     private void darAltaLlamada(){
@@ -78,7 +84,7 @@ public class MenuLlamada implements Menu{
 
     private void listarLLamadas() {
         System.out.println("-----------------");
-        System.out.println("1)Mostrar Listado de llamadas de un cliente");
+        System.out.println("1)Mostrar Listado de llamada de un cliente");
         System.out.println("2)(atras)");
         System.out.println("Escoge una opcion:");
         int opcion = getOpcion(2);
@@ -90,5 +96,28 @@ public class MenuLlamada implements Menu{
             case 2:
                 return;
         }
+    }
+
+    public void llamadasEntreFechas (){
+        System.out.println("-----------------");
+        System.out.println("Introduce NIF");
+        String NIF=sc.next();
+        System.out.println("Introduce fecha Inicial");
+        System.out.println("Introduce el dia:");
+        int dia=sc.nextInt();
+        System.out.println("Introduce el mes");
+        int mes=sc.nextInt();
+        System.out.println("Introduce el año");
+        int ano=sc.nextInt();
+        LocalDate fechaInicial=LocalDate.of(ano,mes,dia);
+        System.out.println("Introduce fecha fINAL");
+        System.out.println("Introduce el dia:");
+        dia=sc.nextInt();
+        System.out.println("Introduce el mes");
+        mes=sc.nextInt();
+        System.out.println("Introduce el año");
+        ano=sc.nextInt();
+        LocalDate fechaFinal=LocalDate.of(ano,mes,dia);
+        gestion.getDatosEntreFechas(gestion.listarLlamadas(gestion.recuperarCliente(NIF)),fechaInicial,fechaFinal);
     }
 }

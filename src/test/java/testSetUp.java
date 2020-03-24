@@ -1,12 +1,12 @@
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.clientes.ClienteParticulares;
-import baseDeDatos.clientes.datos.Direccion;
+import data.cliente.Cliente;
+import data.cliente.ClienteParticular;
+import data.cliente.datos.Direccion;
 import es.uji.www.GeneradorDatosINE;
 import gestion.Gestion;
 
 public class testSetUp {
 
-    //Generación de una muestra de 20 clientes aleatoria
+    //Generación de una muestra de 20 cliente aleatoria
     static Gestion crearDatosMuestra(){
         Gestion gestion = new Gestion();
         for(int i = 0; i < 20; i++){
@@ -26,6 +26,6 @@ public class testSetUp {
         int cp=12000;
         Direccion direccion=new Direccion(cp,provincia,poblacion);
 
-        return new ClienteParticulares(nombre,NIF,correo,direccion,generador.getApellido());
+        return new ClienteParticular(nombre,NIF,correo,direccion,generador.getApellido());
     }
 }

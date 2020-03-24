@@ -1,7 +1,10 @@
-package baseDeDatos.clientes.datos;
+package data.cliente.datos;
 
-public class Tarifa {
-    private int eurosMinuto=1;
+import java.io.Serializable;
+
+public class Tarifa implements Serializable {
+
+    private int eurosMinuto;
 
     public Tarifa(int eurosMinuto) {
         this.eurosMinuto = eurosMinuto;

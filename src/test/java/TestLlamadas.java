@@ -1,5 +1,5 @@
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.llamadas.Llamada;
+import data.cliente.Cliente;
+import data.llamada.Llamada;
 import gestion.Gestion;
 import org.junit.Test;
 

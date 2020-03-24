@@ -1,57 +1,54 @@
 package gestion;
 
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.clientes.datos.Tarifa;
-import baseDeDatos.facturas.Factura;
-import baseDeDatos.llamadas.Llamada;
-
+import data.cliente.Cliente;
+import data.cliente.datos.Tarifa;
+import data.llamada.Llamada;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.time.LocalDate;
 
-public class GestionClientes {
-    protected HashMap<String, HashSet<Llamada>> llamadas;
-    protected HashMap<String, Cliente> clientes;
+class GestionClientes implements Serializable {
+
+    private HashMap <String, HashSet<Llamada>> llamadas;
+    private HashMap <String, Cliente> clientes;
 
 
-    protected GestionClientes(){
+    GestionClientes(){
         llamadas=new HashMap<>();
         clientes=new HashMap<>();
     }
 
-    protected void nuevoCliente(Cliente cliente){
-        clientes.put(cliente.getNIF(), cliente);
-        llamadas.put(cliente.getNIF(), new HashSet<>());
+    void nuevoCliente(Cliente nuevoCliente){
+        clientes.put(nuevoCliente.getNIF(), nuevoCliente);
+        llamadas.put(nuevoCliente.getNIF(), new HashSet<>());
     }
 
-    protected void borrarCliente(String NIF) {
+    void borrarCliente(String NIF) {
         clientes.remove(NIF);
         llamadas.remove(NIF);
-
     }
 
-    protected void cambiarTarifa(Cliente cliente, Tarifa tarifa){
+    void cambiarTarifa(Cliente cliente, Tarifa tarifa){
         cliente.setTarifa(tarifa);
     }
 
-    protected Cliente datosCliente(String NIF){
+    Cliente datosCliente(String NIF){
         return clientes.get(NIF);
     }
 
-    protected HashSet<Cliente> listadoClientes(){
+    HashSet<Cliente> listadoClientes(){
         HashSet<Cliente> lista = new HashSet<>();
-        int i = 0;
         for (String NIF : clientes.keySet()){
             lista.add(clientes.get(NIF));
         }
         return lista;
     }
 
-    protected void anadirLlamada(Cliente cliente, Llamada llamada){
-        llamadas.get(cliente.getNIF()).add(llamada);
+    void anadirLlamada(Cliente cliente, Llamada nuevaLlamada){
+        llamadas.get(cliente.getNIF()).add(nuevaLlamada);
     }
 
-    protected HashSet<Llamada> listadoLlamadas(Cliente cliente){
+    HashSet<Llamada> listadoLlamadas(Cliente cliente){
         return llamadas.get(cliente.getNIF());
     }
 

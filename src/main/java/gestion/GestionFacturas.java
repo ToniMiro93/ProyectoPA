@@ -1,23 +1,25 @@
 package gestion;
 
-import baseDeDatos.clientes.Cliente;
-import baseDeDatos.facturas.Factura;
-import baseDeDatos.llamadas.Llamada;
+import data.cliente.Cliente;
+import data.facturas.Factura;
+import data.llamada.Llamada;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class GestionFacturas {
-    protected HashMap<Integer, Factura> codFacturas;
-    protected HashMap<String, HashSet<Factura>> facturas;
+class GestionFacturas implements Serializable {
 
-    protected GestionFacturas() {
+    private HashMap<Integer, Factura> codFacturas;
+    private HashMap<String, HashSet<Factura>> facturas;
+
+    GestionFacturas() {
         this.codFacturas = new HashMap<>();
         this.facturas=new HashMap<>();
     }
 
-    protected void borrarFacturas(String NIF){
+    void borrarFacturas(String NIF){
         HashSet<Factura> facturasCliente = facturas.get(NIF);
         if (facturasCliente != null) {
             for (Factura factura : facturasCliente) {
@@ -27,35 +29,32 @@ public class GestionFacturas {
         }
     }
 
-    protected void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal){
+    void emitirFactura(Cliente cliente, LocalDate fechaInicial, LocalDate fechaFinal, double importe) {
         LocalDate fechaHoy = LocalDate.now();
-        Factura factura = new Factura(cliente.getTarifa(), fechaHoy, fechaInicial, fechaFinal);
-        factura.setImporte(calcularImporte(factura, cliente));
+        Factura factura = new Factura(cliente.getTarifa(), fechaHoy, fechaInicial, fechaFinal, importe);
         anadirFactura(cliente, factura);
     }
 
-    private double calcularImporte(Factura factura,Cliente cliente){
+    double calcularImporte(Cliente cliente, HashSet<Llamada> llamadasRealizadas){
         double sumaImporte = 0;
-        for(Llamada llamada: cliente.getLlamadas()){
-            if (llamada.getFecha().compareTo(factura.getInicioPeriodo())>=0 && llamada.getFecha().compareTo(factura.getFinalPeriodo())<=0){
-                sumaImporte += llamada.getDuracion()*cliente.getTarifa().getEurosMinuto();
-            }
+        for(Llamada llamada: llamadasRealizadas){
+            sumaImporte += llamada.getDuracion()*cliente.getTarifa().getEurosMinuto();
         }
         return sumaImporte;
     }
 
-    private void anadirFactura(Cliente cliente, Factura factura){
+    private void anadirFactura(Cliente cliente, Factura nuevaFactura){
         if (facturas.get(cliente) == null)
             facturas.put(cliente.getNIF(), new HashSet<>());
-        facturas.get(cliente.getNIF()).add(factura);
-        codFacturas.put(factura.getCodigo(), factura);
+        facturas.get(cliente.getNIF()).add(nuevaFactura);
+        codFacturas.put(nuevaFactura.getCodigo(), nuevaFactura);
     }
 
-    protected Factura recuperarFactura(int cod){
+    Factura recuperarFactura(int cod){
         return codFacturas.get(cod);
     }
 
-    protected HashSet<Factura> listarFacturas(Cliente cliente){
+    HashSet<Factura> listarFacturas(Cliente cliente){
         return facturas.get(cliente.getNIF());
     }
 }

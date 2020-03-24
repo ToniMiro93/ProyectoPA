@@ -1,7 +1,7 @@
 package aplicacion;
 
-import baseDeDatos.clientes.ClienteEmpresas;
-import baseDeDatos.clientes.datos.Direccion;
+import data.cliente.ClienteEmpresa;
+import data.cliente.datos.Direccion;
 import gestion.Gestion;
 
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class MenuFacturas implements Menu{
 
-    public Scanner sc = new Scanner(System.in);
+    public transient Scanner sc;
     private Gestion gestion;
 
     public MenuFacturas(Gestion gestion) {
@@ -17,9 +17,10 @@ public class MenuFacturas implements Menu{
     }
 
     public void start(){
+        sc=new Scanner(System.in);
         while (true) {
             mostrarOpciones();
-            int opcion = getOpcion(4);
+            int opcion = getOpcion(5);
             switch (opcion) {
                 case 1:
                     emitirFactura();
@@ -31,6 +32,9 @@ public class MenuFacturas implements Menu{
                     listarFacturasNIF();
                     break;
                 case 4:
+                    facturasEntreFechas();
+                    break;
+                case 5:
                     return;
             }
 
@@ -57,7 +61,8 @@ public class MenuFacturas implements Menu{
         System.out.println("1)Emitir factura.");
         System.out.println("2)Recuperar datos de una factura.");
         System.out.println("3)Recuperar todas las factuas");
-        System.out.println("4)Salir del menu de facturas");
+        System.out.println("4)Listar facturas emitidas entre dos fechas");
+        System.out.println("5)Salir del menu de facturas");
     }
 
     private void emitirFactura() {
@@ -87,7 +92,7 @@ public class MenuFacturas implements Menu{
                 System.out.print("Año:");
                 ano=sc.nextInt();
                 LocalDate fechaFin=LocalDate.of(ano,mes,dia);
-                gestion.emitirFactura(new ClienteEmpresas("Pepe",
+                gestion.emitirFactura(new ClienteEmpresa("Pepe",
                         "11111111T", "pepe@email.es", new Direccion(1200,"castellon",
                         "castellon")),fechaInicio,fechaFin);
                 break;
@@ -126,5 +131,28 @@ public class MenuFacturas implements Menu{
             case 2:
                 return;
         }
+    }
+
+    public void facturasEntreFechas (){
+        System.out.println("-----------------");
+        System.out.println("Introduce NIF");
+        String NIF=sc.next();
+        System.out.println("Introduce fecha Inicial");
+        System.out.println("Introduce el dia:");
+        int dia=sc.nextInt();
+        System.out.println("Introduce el mes");
+        int mes=sc.nextInt();
+        System.out.println("Introduce el año");
+        int ano=sc.nextInt();
+        LocalDate fechaInicial=LocalDate.of(ano,mes,dia);
+        System.out.println("Introduce fecha fINAL");
+        System.out.println("Introduce el dia:");
+        dia=sc.nextInt();
+        System.out.println("Introduce el mes");
+        mes=sc.nextInt();
+        System.out.println("Introduce el año");
+        ano=sc.nextInt();
+        LocalDate fechaFinal=LocalDate.of(ano,mes,dia);
+        gestion.getDatosEntreFechas(gestion.listarFacturas(gestion.recuperarCliente(NIF)),fechaInicial,fechaFinal);
     }
 }
