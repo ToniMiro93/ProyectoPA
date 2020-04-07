@@ -42,7 +42,8 @@ class GestionFacturas implements Serializable {
     double calcularImporte(Cliente cliente, HashSet<Llamada> llamadasRealizadas){
         double sumaImporte = 0;
         for(Llamada llamada: llamadasRealizadas){
-            sumaImporte += llamada.getDuracion()*cliente.getTarifa().getEurosMinuto();
+
+            sumaImporte += llamada.getDuracion()*cliente.getTarifa().getPrecio(llamada);
         }
         return sumaImporte;
     }

@@ -3,6 +3,7 @@ package data.cliente;
 import data.Fecha;
 import data.cliente.datos.Direccion;
 import data.cliente.datos.Tarifa;
+import data.cliente.datos.TarifaBasica;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public abstract class Cliente implements Serializable, Fecha {
         this.NIF = NIF;
         this.fecha = LocalDate.now();
         this.eMail = eMail;
-        this.tarifa = new Tarifa(1);
+        this.tarifa = new TarifaBasica();
         this.direccion=direccion;
     }
 
@@ -38,7 +39,8 @@ public abstract class Cliente implements Serializable, Fecha {
     }
 
     public void setTarifa(Tarifa tarifa) {
-        this.getTarifa().setEurosMinuto(tarifa.getEurosMinuto());
+        if(tarifa!=null)
+            this.tarifa=tarifa;
     }
 
     @Override

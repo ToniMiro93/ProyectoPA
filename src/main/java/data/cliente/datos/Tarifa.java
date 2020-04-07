@@ -1,20 +1,21 @@
 package data.cliente.datos;
 
+import data.llamada.Llamada;
+
 import java.io.Serializable;
 
-public class Tarifa implements Serializable {
+public abstract class Tarifa implements Serializable {
 
-    private int eurosMinuto;
+    private int precio;
 
-    public Tarifa(int eurosMinuto) {
-        this.eurosMinuto = eurosMinuto;
+    public Tarifa(int precio) {
+        this.precio=precio;
     }
 
-    public int getEurosMinuto() {
-        return eurosMinuto;
+    public int getPrecio() {
+        return precio;
     }
-
-    public void setEurosMinuto(int eurosMinuto) {
-        this.eurosMinuto = eurosMinuto;
-    }
+    public int getPrecio(Llamada llamada){
+        return precio;
+    };
 }

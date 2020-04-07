@@ -3,8 +3,7 @@ package aplicacion;
 import data.cliente.Cliente;
 import data.cliente.ClienteEmpresa;
 import data.cliente.ClienteParticular;
-import data.cliente.datos.Direccion;
-import data.cliente.datos.Tarifa;
+import data.cliente.datos.*;
 import gestion.Gestion;
 
 import java.time.LocalDate;
@@ -150,9 +149,8 @@ public class MenuClientes implements Menu{
                 System.out.print("Introduce el NIF:");
                 String NIF=sc.next();
                 Cliente cliente = gestion.recuperarCliente(NIF);
-                System.out.print("Introduce la nueva tarifa:");
-                int tarifa=sc.nextInt();
-                gestion.cambiarTarifa(cliente,new Tarifa(tarifa));
+                System.out.print("Elige el tipo de tarifa:");
+                gestion.cambiarTarifa(cliente,elegirTarifa());
                 break;
             case 2:
                 return;
@@ -206,7 +204,7 @@ public class MenuClientes implements Menu{
         System.out.println("Introduce el año");
         int ano=sc.nextInt();
         LocalDate fechaInicial=LocalDate.of(ano,mes,dia);
-        System.out.println("Introduce fecha fINAL");
+        System.out.println("Introduce fecha final");
         System.out.println("Introduce el dia:");
         dia=sc.nextInt();
         System.out.println("Introduce el mes");
@@ -215,6 +213,24 @@ public class MenuClientes implements Menu{
         ano=sc.nextInt();
         LocalDate fechaFinal=LocalDate.of(ano,mes,dia);
         gestion.getDatosEntreFechas(gestion.listarClientes(),fechaInicial,fechaFinal);
+    }
+
+    private Tarifa elegirTarifa(){
+        System.out.println("-----------------");
+        System.out.println("1-Tarifa Tardes: 5 cent de 16:00 a 20:00.");
+        System.out.println("2-Tarifa Domingo: Domingos a 0 cent.");
+        System.out.println("3-Ambas Tarifas");
+        System.out.println("4-Eliminar mis tarifas especiales");
+        System.out.println("5-Salir");
+        int opcion=getOpcion(5);
+        switch (opcion){
+            case 1: return new TarifaTardes(new TarifaBasica());
+            case 2: return new TarifaDomingo(new TarifaBasica());
+            case 3: return new TarifaDomingo(new TarifaTardes(new TarifaBasica()));
+            case 4: return new TarifaBasica();
+            case 5:
+        }
+        return null;
     }
 
 }
