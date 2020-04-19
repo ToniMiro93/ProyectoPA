@@ -2,7 +2,7 @@ package gestion;
 
 import data.Fecha;
 import data.cliente.Cliente;
-import data.cliente.datos.Tarifa;
+import data.tarifas.Tarifa;
 import data.facturas.Factura;
 import data.llamada.Llamada;
 import gestion.excepciones.*;

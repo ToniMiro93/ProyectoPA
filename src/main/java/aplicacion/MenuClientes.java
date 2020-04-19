@@ -4,6 +4,10 @@ import data.cliente.Cliente;
 import data.cliente.ClienteEmpresa;
 import data.cliente.ClienteParticular;
 import data.cliente.datos.*;
+import data.tarifas.Tarifa;
+import data.tarifas.TarifaBasica;
+import data.tarifas.TarifaDomingo;
+import data.tarifas.TarifaTardes;
 import gestion.Gestion;
 
 import java.time.LocalDate;

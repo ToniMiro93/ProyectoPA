@@ -2,8 +2,8 @@ package data.cliente;
 
 import data.Fecha;
 import data.cliente.datos.Direccion;
-import data.cliente.datos.Tarifa;
-import data.cliente.datos.TarifaBasica;
+import data.tarifas.Tarifa;
+import data.tarifas.TarifaBasica;
 
 import java.io.Serializable;
 import java.time.LocalDate;

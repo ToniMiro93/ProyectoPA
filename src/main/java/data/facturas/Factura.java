@@ -1,7 +1,7 @@
 package data.facturas;
 
 import data.Fecha;
-import data.cliente.datos.Tarifa;
+import data.tarifas.Tarifa;
 
 import java.io.Serializable;
 import java.time.LocalDate;

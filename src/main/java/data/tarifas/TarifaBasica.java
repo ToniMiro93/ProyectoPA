@@ -1,9 +1,6 @@
-package data.cliente.datos;
-
-import data.cliente.datos.Tarifa;
+package data.tarifas;
 
 public class TarifaBasica extends Tarifa{
-    int precio;
 
     public TarifaBasica(){
         super(15);
