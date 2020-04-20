@@ -1,7 +1,7 @@
 package gestion;
 
 import data.cliente.Cliente;
-import data.cliente.datos.Tarifa;
+import data.tarifas.Tarifa;
 import data.llamada.Llamada;
 import gestion.excepciones.ClienteNotFoundException;
 import gestion.excepciones.ListaDeClientesVaciaException;

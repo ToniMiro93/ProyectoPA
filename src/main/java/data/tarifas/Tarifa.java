@@ -1,4 +1,4 @@
-package data.cliente.datos;
+package data.tarifas;
 
 import data.llamada.Llamada;
 
@@ -9,7 +9,7 @@ public abstract class Tarifa implements Serializable {
     private int precio;
 
     public Tarifa(int precio) {
-        this.precio=precio;
+        this.precio = precio;
     }
 
     public int getPrecio() {

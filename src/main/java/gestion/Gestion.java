@@ -2,7 +2,7 @@ package gestion;
 
 import data.Fecha;
 import data.cliente.Cliente;
-import data.cliente.datos.Tarifa;
+import data.tarifas.Tarifa;
 import data.facturas.Factura;
 import data.llamada.Llamada;
 import gestion.excepciones.*;
@@ -55,7 +55,7 @@ public class Gestion implements Serializable{
         }
         catch (ListaDeClientesVaciaException e){
             e.printStackTrace();
-            return null;
+            return new HashSet<Cliente>();
         }
     }
 
@@ -69,7 +69,7 @@ public class Gestion implements Serializable{
         }
         catch (ListaDeLlamadasVaciaException e){
             e.printStackTrace();
-            return null;
+            return new HashSet<Llamada>();
         }
     }
 
@@ -108,7 +108,7 @@ public class Gestion implements Serializable{
         }
         catch (ListaDeFacturasVaciaException e){
             e.printStackTrace();
-            return null;
+            return new HashSet<Factura>();
         }
     }
 

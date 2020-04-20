@@ -43,7 +43,7 @@ class GestionFacturas implements Serializable {
         double sumaImporte = 0;
         for(Llamada llamada: llamadasRealizadas){
 
-            sumaImporte += llamada.getDuracion()*cliente.getTarifa().getPrecio(llamada);
+            sumaImporte += llamada.getDuracion()*cliente.getTarifa().getPrecio(llamada); //devovlerPrecio
         }
         return sumaImporte;
     }

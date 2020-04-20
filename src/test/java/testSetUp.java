@@ -3,6 +3,7 @@ import data.cliente.ClienteParticular;
 import data.cliente.datos.Direccion;
 import es.uji.www.GeneradorDatosINE;
 import gestion.Gestion;
+import gestion.fabricas.FabricaClientes;
 
 public class testSetUp {
 
@@ -17,6 +18,7 @@ public class testSetUp {
 
     public static Cliente crearCliente(){
         GeneradorDatosINE generador=new GeneradorDatosINE();
+        FabricaClientes fabrica = new FabricaClientes();
 
         String nombre=generador.getNombre();
         String NIF=generador.getNIF();
@@ -26,6 +28,8 @@ public class testSetUp {
         int cp=12000;
         Direccion direccion=new Direccion(cp,provincia,poblacion);
 
+//        Cliente cliente = fabrica.getClienteParticular(nombre, generador.getApellido(), NIF, correo, direccion);
+//        return cliente;
         return new ClienteParticular(nombre,NIF,correo,direccion,generador.getApellido());
     }
 }

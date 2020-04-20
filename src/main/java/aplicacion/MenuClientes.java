@@ -4,7 +4,14 @@ import data.cliente.Cliente;
 import data.cliente.ClienteEmpresa;
 import data.cliente.ClienteParticular;
 import data.cliente.datos.*;
+import data.tarifas.Tarifa;
+import data.tarifas.TarifaBasica;
+import data.tarifas.TarifaDomingo;
+import data.tarifas.TarifaTardes;
 import gestion.Gestion;
+import gestion.fabricas.FabricaClientes;
+import gestion.fabricas.FabricaTarifasParametrizada;
+import gestion.fabricas.TipoTarifa;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -105,16 +112,19 @@ public class MenuClientes implements Menu{
         return nuevoCliente;
     }
 
-    private Cliente getTipoCliente(int tipo, String NIF, String email, Direccion direccion, String nombre) {
+    private Cliente getTipoCliente(int tipo, String NIF, String correo, Direccion direccion, String nombre) {
+        FabricaClientes fabrica = new FabricaClientes();
         Cliente nuevoCliente = null;
         switch (tipo){
             case 1:
                 System.out.print("Apellido:");
                 String apellido=sc.next();
-                nuevoCliente=new ClienteParticular(nombre,NIF,email,direccion,apellido);
+                nuevoCliente = fabrica.getClienteParticular(nombre, apellido, NIF, correo, direccion);
+//                nuevoCliente=new ClienteParticular(nombre,NIF,correo,direccion,apellido);
                 break;
             case 2:
-                nuevoCliente=new ClienteEmpresa(nombre,NIF,email,direccion);
+                nuevoCliente = fabrica.getClienteEmpresa(nombre, NIF, correo, direccion);
+//                nuevoCliente=new ClienteEmpresa(nombre,NIF,correo,direccion);
                 break;
         }
         return nuevoCliente;
@@ -149,8 +159,11 @@ public class MenuClientes implements Menu{
                 System.out.print("Introduce el NIF:");
                 String NIF=sc.next();
                 Cliente cliente = gestion.recuperarCliente(NIF);
-                System.out.print("Elige el tipo de tarifa:");
-                gestion.cambiarTarifa(cliente,elegirTarifa());
+                FabricaTarifasParametrizada fabrica = new FabricaTarifasParametrizada();
+                TipoTarifa tipo = elegirTarifa();
+                Tarifa tarifaRecubierta = cliente.getTarifa();
+                Tarifa tarifaNueva = fabrica.getTarifa(tipo, tarifaRecubierta);
+                gestion.cambiarTarifa(cliente, tarifaNueva);
                 break;
             case 2:
                 return;
@@ -215,22 +228,13 @@ public class MenuClientes implements Menu{
         gestion.getDatosEntreFechas(gestion.listarClientes(),fechaInicial,fechaFinal);
     }
 
-    private Tarifa elegirTarifa(){
-        System.out.println("-----------------");
-        System.out.println("1-Tarifa Tardes: 5 cent de 16:00 a 20:00.");
-        System.out.println("2-Tarifa Domingo: Domingos a 0 cent.");
-        System.out.println("3-Ambas Tarifas");
-        System.out.println("4-Eliminar mis tarifas especiales");
-        System.out.println("5-Salir");
-        int opcion=getOpcion(5);
-        switch (opcion){
-            case 1: return new TarifaTardes(new TarifaBasica());
-            case 2: return new TarifaDomingo(new TarifaBasica());
-            case 3: return new TarifaDomingo(new TarifaTardes(new TarifaBasica()));
-            case 4: return new TarifaBasica();
-            case 5:
-        }
-        return null;
+    private TipoTarifa elegirTarifa(){
+        TipoTarifa tipo;
+
+        System.out.println(TipoTarifa.opciones());
+        int cantidadDeOpciones = TipoTarifa.values().length;
+        int opcion = getOpcion(cantidadDeOpciones);
+        return TipoTarifa.IntergerToTipo(opcion);
     }
 
 }

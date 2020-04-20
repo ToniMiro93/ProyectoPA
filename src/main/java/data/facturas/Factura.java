@@ -1,7 +1,7 @@
 package data.facturas;
 
 import data.Fecha;
-import data.cliente.datos.Tarifa;
+import data.tarifas.Tarifa;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,6 +21,7 @@ public class Factura implements Serializable, Fecha {
         this.fechaEmision = fechaEmision;
         this.inicioPeriodo = inicioPeriodo;
         this.finalPeriodo = finalPeriodo;
+        this.importe = importe;
     }
 
 

@@ -1,17 +1,18 @@
-package data.cliente.datos;
+package data.tarifas;
 
 import data.llamada.Llamada;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TarifaTardes extends Tarifa {
+
     Tarifa tarifa;
 
     public TarifaTardes(Tarifa tarifa){
         super(5);
-        this.tarifa=tarifa;
+        this.tarifa = tarifa;
     }
+
     public int getPrecio(Llamada llamada){
         int recubierta = tarifa.getPrecio();
         int precioTardes = super.getPrecio();

@@ -19,6 +19,15 @@ public class Llamada implements Serializable, Fecha {
         this.duracion = duracion;
     }
 
+    //Constructor provisional para los tests para controlar
+    //las horas a las que se hacen las llamadas
+    public Llamada(int duracion, LocalDate fecha, LocalTime hora){
+        this.numDest = 111111111;
+        this.duracion = duracion;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+
     public LocalDate getFecha() {
         return fecha;
     }
