@@ -14,7 +14,7 @@ public class TarifaTardes extends Tarifa {
     }
 
     public int getPrecio(Llamada llamada){
-        int recubierta = tarifa.getPrecio();
+        int recubierta = tarifa.getPrecio(llamada);
         int precioTardes = super.getPrecio();
         if (recubierta>precioTardes) {
             if (llamada.getHora().compareTo(LocalTime.of(16, 00)) >= 0 && llamada.getHora().compareTo(LocalTime.of(20, 00)) <= 0) {
