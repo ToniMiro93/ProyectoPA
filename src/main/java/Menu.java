@@ -5,6 +5,12 @@ import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        MenuPrincipal programa = cargarPrograma();
+        programa.start();
+        guardarPrograma(programa);
+    }
+
+    private static MenuPrincipal cargarPrograma() throws IOException, ClassNotFoundException{
         MenuPrincipal programa;
         System.out.print("Quieres cargar una base de datos anterior? s/n:");
         Scanner sc = new Scanner(System.in);
@@ -25,7 +31,11 @@ public class Menu {
         else {
             programa = new MenuPrincipal();
         }
-        programa.start();
+        return programa;
+    }
+    private static void guardarPrograma(MenuPrincipal programa) throws IOException, ClassNotFoundException{
+        Scanner sc = new Scanner(System.in);
+        String respuesta;
 
         System.out.print("Quieres guardar la base de datos? s/n: ");
         respuesta = sc.next();
