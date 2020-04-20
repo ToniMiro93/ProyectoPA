@@ -17,5 +17,5 @@ public abstract class Tarifa implements Serializable {
     }
     public int getPrecio(Llamada llamada){
         return precio;
-    };
+    }
 }
