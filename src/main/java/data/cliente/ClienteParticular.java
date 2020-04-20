@@ -11,8 +11,16 @@ public class ClienteParticular extends Cliente {
         this.apellidos = apellidos;
     }
 
-    private String mostrarNombre(){
-        return "\tnombre = " + super.getNombre() + '\n' +
-               "\tapellidos = " + apellidos + '\n';
+    @Override
+    public String toString() {
+        return "Cliente:" + '\n' +
+                "\tnombre = " + nombre + '\n' +
+                "\tapellidos = " + apellidos + '\n' +
+                "\tNIF = " + NIF + '\n' +
+                "\teMail = " + eMail + '\n' +
+                "\tfecha = " + fecha + '\n' +
+                "\ttarifa = " + tarifa + '\n' +
+                "\tdireccion = " + direccion
+                ;
     }
 }

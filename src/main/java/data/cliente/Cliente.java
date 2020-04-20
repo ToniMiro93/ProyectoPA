@@ -10,12 +10,12 @@ import java.time.LocalDate;
 
 public abstract class Cliente implements Serializable, Fecha {
 
-    private String nombre;
-    private String NIF;
-    private String eMail;
-    private LocalDate fecha;
-    private Tarifa tarifa;
-    private Direccion direccion;
+    String nombre;
+    String NIF;
+    String eMail;
+    LocalDate fecha;
+    Tarifa tarifa;
+    Direccion direccion;
 
     Cliente(String nombre, String NIF, String eMail, Direccion direccion){
         this.nombre = nombre;
@@ -46,18 +46,13 @@ public abstract class Cliente implements Serializable, Fecha {
     @Override
     public String toString() {
         return "Cliente:" + '\n' +
-                mostrarNombre() +
-//                "\tnombre = " + nombre + '\n' +
+                "\tnombre = " + nombre + '\n' +
                 "\tNIF = " + NIF + '\n' +
                 "\teMail = " + eMail + '\n' +
                 "\tfecha = " + fecha + '\n' +
                 "\ttarifa = " + tarifa + '\n' +
                 "\tdireccion = " + direccion
                 ;
-    }
-
-    private String mostrarNombre(){
-        return "\tnombre = " + nombre + '\n';
     }
 
     @Override

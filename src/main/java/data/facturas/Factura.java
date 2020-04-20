@@ -21,6 +21,7 @@ public class Factura implements Serializable, Fecha {
         this.fechaEmision = fechaEmision;
         this.inicioPeriodo = inicioPeriodo;
         this.finalPeriodo = finalPeriodo;
+        this.importe = importe;
     }
 
 

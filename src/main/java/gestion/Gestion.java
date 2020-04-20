@@ -55,7 +55,7 @@ public class Gestion implements Serializable{
         }
         catch (ListaDeClientesVaciaException e){
             e.printStackTrace();
-            return null;
+            return new HashSet<Cliente>();
         }
     }
 
@@ -69,7 +69,7 @@ public class Gestion implements Serializable{
         }
         catch (ListaDeLlamadasVaciaException e){
             e.printStackTrace();
-            return null;
+            return new HashSet<Llamada>();
         }
     }
 
@@ -108,7 +108,7 @@ public class Gestion implements Serializable{
         }
         catch (ListaDeFacturasVaciaException e){
             e.printStackTrace();
-            return null;
+            return new HashSet<Factura>();
         }
     }
 
