@@ -27,6 +27,9 @@ public class VentanaClienteNuevo {
         panelLabel.add(provincia);
         panelLabel.add(codPostal);
         contenedor.add(panelLabel, BorderLayout.WEST);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.pack();
+        ventana.setVisible(true);
 
     }
     public void creaGUI() {

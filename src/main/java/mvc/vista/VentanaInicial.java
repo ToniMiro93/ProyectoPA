@@ -15,13 +15,16 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
     private void GUI() {
         JFrame ventana = new JFrame("Aplicación Telefonía");
         Container contenedor = ventana.getContentPane();
+
         JTabbedPane pestanyas = new JTabbedPane();
         JPanel clientesPestanya=new JPanel();
         JPanel facturasPestanya=new JPanel();
         JPanel llamadasPestanya=new JPanel();
+
         pestanyas.add("Clientes", clientesPestanya);
         pestanyas.add("Facturas", facturasPestanya);
         pestanyas.add("Llamadas", llamadasPestanya);
+
         EscuchadorClientes escuchadorClientes=new EscuchadorClientes();
         JButton jbAnyadirCliente = new JButton("Añadir Cliente");
         JButton jbBorrarCliente = new JButton("Borrar Cliente");
@@ -29,27 +32,39 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         JButton jbListarClientes = new JButton("Listar Clientes");
         JButton jbClientesFecha = new JButton("Listar Clientes entre fechas");
         JButton jbCambiarTarifa = new JButton("Cambiar Tarifa");
+
+        jbAnyadirCliente.setActionCommand("nuevo");
+        jbAnyadirCliente.setActionCommand("borrar");
+        jbAnyadirCliente.setActionCommand("recuperar");
+        jbAnyadirCliente.setActionCommand("listarcli");
+        jbAnyadirCliente.setActionCommand("listarFechas");
+        jbAnyadirCliente.setActionCommand("tarifa");
+
         jbAnyadirCliente.addActionListener(escuchadorClientes);
         jbBorrarCliente.addActionListener(escuchadorClientes);
         jbRecuperarCliente.addActionListener(escuchadorClientes);
         jbListarClientes.addActionListener(escuchadorClientes);
         jbClientesFecha.addActionListener(escuchadorClientes);
         jbCambiarTarifa.addActionListener(escuchadorClientes);
+
         clientesPestanya.add(jbAnyadirCliente);
         clientesPestanya.add(jbBorrarCliente);
         clientesPestanya.add(jbRecuperarCliente);
         clientesPestanya.add(jbListarClientes);
         clientesPestanya.add(jbCambiarTarifa);
         clientesPestanya.add(jbClientesFecha);
+
         EscuchadorFacturas escuchadorFacturas=new EscuchadorFacturas();
         JButton jbEmitirFactura = new JButton("Emitir Factura");
         JButton jbRecuperarFactura = new JButton("Recuperar Factura");
         JButton jbListarFacturas = new JButton("Listar Facturas");
         JButton jbFacturasFechas = new JButton("Facturas entre fechas");
+
         jbEmitirFactura.addActionListener(escuchadorFacturas);
         jbRecuperarFactura.addActionListener(escuchadorFacturas);
         jbListarFacturas.addActionListener(escuchadorFacturas);
         jbFacturasFechas.addActionListener(escuchadorFacturas);
+
         facturasPestanya.add(jbEmitirFactura);
         facturasPestanya.add(jbRecuperarFactura);
         facturasPestanya.add(jbListarFacturas);
@@ -82,14 +97,14 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
 
     class EscuchadorClientes implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            JButton boton = (JButton)e.getSource();
-            String texto = boton.getText();
-            if(texto.equals("Añadir Cliente"))
-            else if(texto.equals("Borrar Cliente"))
-            else if(texto.equals("Recuperar Cliente"))
-            else if(texto.equals("Listar Clientes"))
-            else if(texto.equals("Listar Clientes entre fechas"))
-            else if(texto.equals("Cambiar Tarifa"))
+            switch (e.getActionCommand()) {
+                case: (texto.equals("Añadir Cliente")) controlador.anyadirCliente();
+                (texto.equals("Borrar Cliente")) controlador.borrarCliente();
+                else if (texto.equals("Recuperar Cliente")) controlador.recuperarCliente();
+                else if (texto.equals("Listar Clientes")) controlador.listarClientes();
+                else if (texto.equals("Listar Clientes entre fechas")) controlador.clientesEntreFechas();
+                else if (texto.equals("Cambiar Tarifa")) controlador.cambiarTarifa();
+            }
         }
     }
 
@@ -97,10 +112,10 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         public void actionPerformed(ActionEvent e) {
             JButton boton = (JButton)e.getSource();
             String texto = boton.getText();
-            if(texto.equals("Emitir Factura"))
-            else if(texto.equals("Recuperar Factura"))
-            else if(texto.equals("Listar Facturas"))
-            else if(texto.equals("Facturas entre fechas"))
+//            if(texto.equals("Emitir Factura"))
+//            else if(texto.equals("Recuperar Factura"))
+//            else if(texto.equals("Listar Facturas"))
+//            else if(texto.equals("Facturas entre fechas"))
 
         }
     }
@@ -109,9 +124,9 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         public void actionPerformed(ActionEvent e) {
             JButton boton = (JButton)e.getSource();
             String texto = boton.getText();
-            if(texto.equals("Añadir Llamada"))
-            else if(texto.equals("Mostrar Llamadas"))
-            else if(texto.equals("Llamadas entre fechas"))
+//            if(texto.equals("Añadir Llamada"))
+//            else if(texto.equals("Mostrar Llamadas"))
+//            else if(texto.equals("Llamadas entre fechas"))
 
         }
     }

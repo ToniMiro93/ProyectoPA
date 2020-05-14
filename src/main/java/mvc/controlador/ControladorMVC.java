@@ -5,7 +5,16 @@ import mvc.vista.*;
 public class ControladorMVC implements Controlador{
     private InterrogaVista vista;
 
+    @Override
+    public void anyadirCliente() {
+        crearCliente();
+    }
 
+    private void crearCliente(){
+        VentanaClienteNuevo ventana=new VentanaClienteNuevo();
+        ventana.creaGUI();
+
+    }
 
     @Override
     public void borrarCliente() {
