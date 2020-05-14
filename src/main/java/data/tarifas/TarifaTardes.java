@@ -4,13 +4,10 @@ import data.llamada.Llamada;
 
 import java.time.LocalTime;
 
-public class TarifaTardes extends Tarifa {
-
-    Tarifa tarifa;
+public class TarifaTardes extends TarifaEspecial {
 
     public TarifaTardes(Tarifa tarifa){
-        super(5);
-        this.tarifa = tarifa;
+        super(5,tarifa);
     }
 
     public int getPrecio(Llamada llamada){

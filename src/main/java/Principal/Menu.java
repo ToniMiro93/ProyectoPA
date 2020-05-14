@@ -1,13 +1,18 @@
+package Principal;
+
 import aplicacion.MenuPrincipal;
+import mvc.vista.*;
 
 import java.io.*;
 import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        MenuPrincipal programa = cargarPrograma();
+        /*MenuPrincipal programa = cargarPrograma();
         programa.start();
-        guardarPrograma(programa);
+        guardarPrograma(programa);*/
+        VentanaInicial ventana=new VentanaInicial();
+        ventana.creaGUI();
     }
 
     private static MenuPrincipal cargarPrograma() throws IOException, ClassNotFoundException{

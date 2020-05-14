@@ -4,13 +4,11 @@ import data.llamada.Llamada;
 
 import java.time.DayOfWeek;
 
-public class TarifaDomingo extends Tarifa{
+public class TarifaDomingo extends TarifaEspecial{
 
-    Tarifa tarifa;
 
     public TarifaDomingo(Tarifa tarifa){
-        super(0);
-        this.tarifa = tarifa;
+        super(0,tarifa);
     }
 
     public int getPrecio(Llamada llamada){
