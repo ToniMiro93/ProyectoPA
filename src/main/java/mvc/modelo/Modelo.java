@@ -5,15 +5,17 @@ import data.cliente.datos.Direccion;
 import gestion.fabricas.Fabrica;
 import gestion.fabricas.FabricaClientes;
 import gestion.*;
-import mvc.modelo.tablas.InterrogaTablas;
+import mvc.modelo.tablas.ModeloTablaClientes;
 import mvc.vista.InformarVista;
 
+import javax.swing.table.AbstractTableModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Modelo implements ActualizaModelo, InterrogaModelo{
     Gestion gestor=new Gestion();
     InformarVista vista;
+
 
     public void setVista(InformarVista vista) {
         this.vista = vista;
@@ -32,15 +34,12 @@ public class Modelo implements ActualizaModelo, InterrogaModelo{
         gestor.borrarCliente(dni);
     }
 
-    public ArrayList<Cliente> listarClientes(){
+    public AbstractTableModel listarClientes(){
         ArrayList<Cliente> clientes=new ArrayList<>();
         clientes.addAll(gestor.listarClientes());
-        return clientes;
+        return new ModeloTablaClientes(clientes);
     }
 
-    public InterrogaTablas consultaTabla(){
-        return null;
-    }
 
     public ArrayList<Cliente> clientesEntreFechas(LocalDate fechaInicio, LocalDate fin){
         ArrayList<Cliente> clientes=new ArrayList<>();
@@ -49,7 +48,9 @@ public class Modelo implements ActualizaModelo, InterrogaModelo{
     }
 
     @Override
-    public Cliente recuperarCliente(String nif) {
-        return gestor.recuperarCliente(nif);
+    public AbstractTableModel recuperarCliente(String nif) {
+        ArrayList<Cliente> cliente = new ArrayList<>();
+        cliente.add(gestor.recuperarCliente(nif));
+        return new ModeloTablaClientes(cliente);
     }
 }

@@ -1,5 +1,5 @@
 
-package mvc.vista.tablas;
+package mvc.vista.tabla;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;

@@ -2,15 +2,16 @@ package mvc.vista;
 import mvc.controlador.*;
 import mvc.modelo.InterrogaModelo;
 import mvc.vista.pestañaClientes.VentanaBorrar;
+import mvc.vista.pestañaClientes.VentanaCambiarTarifa;
 import mvc.vista.pestañaClientes.VentanaClienteNuevo;
-import mvc.vista.tablas.tablaClientes.VentanaTablaClientes;
+import mvc.vista.pestañaClientes.VentanaRecuperarCliente;
+import mvc.vista.tabla.VentanaTabla;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class VentanaInicial implements InformarVista,InterrogaVista{
@@ -129,7 +130,7 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
                     controlador.clientesEntreFechas();
                     break;
                 case "tarifa":
-                    controlador.cambiarTarifa();
+                    cambiarTarifa();
                     break;
 
             }
@@ -161,7 +162,7 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         }
     }
     private void anyadirCliente(){
-        VentanaClienteNuevo ventana= new VentanaClienteNuevo(controlador);
+        VentanaClienteNuevo ventana = new VentanaClienteNuevo(controlador);
         ventana.creaGUI();
     }
     private void borrarCliente(){
@@ -175,12 +176,17 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
     }
 
     private void listarClientes(){
-
-        SwingUtilities.invokeLater(() -> new VentanaTablaClientes().GUI(modelo));
+            AbstractTableModel modeloTabla = modelo.listarClientes();
+            SwingUtilities.invokeLater(() -> new VentanaTabla().GUI(modeloTabla));
     }
 
     private void recuperarCliente(){
-        VentanaBorrar ventana= new VentanaBorrar(controlador);
+        VentanaRecuperarCliente ventana = new VentanaRecuperarCliente(modelo);
+        ventana.creaGUI();
+    }
+
+    private void cambiarTarifa(){
+        VentanaCambiarTarifa ventana = new VentanaCambiarTarifa(controlador);
         ventana.creaGUI();
     }
 }

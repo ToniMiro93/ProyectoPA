@@ -14,6 +14,7 @@ public class VentanaBorrar {
     public VentanaBorrar (Controlador controlador){
         this.controlador=controlador;
     }
+
     private void GUI() {
         JFrame ventana = new JFrame("Borrar Cliente");
         Container contenedor = ventana.getContentPane();

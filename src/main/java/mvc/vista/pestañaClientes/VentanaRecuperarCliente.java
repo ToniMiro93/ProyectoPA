@@ -1,25 +1,29 @@
 package mvc.vista.pestañaClientes;
 
 import mvc.controlador.Controlador;
+import mvc.modelo.InterrogaModelo;
+import mvc.modelo.Modelo;
+import mvc.vista.tabla.VentanaTabla;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VentanaRecuperarCliente {
 
-    private Controlador controlador;
+    private InterrogaModelo modelo;
 
-    public VentanaRecuperarCliente (Controlador controlador){
-        this.controlador=controlador;
+    public VentanaRecuperarCliente (InterrogaModelo modelo){
+        this.modelo = modelo;
     }
     private void GUI() {
         JFrame ventana = new JFrame("Recuperar Cliente");
         Container contenedor = ventana.getContentPane();
 
         JPanel panelSuperior = new JPanel();
-        panelSuperior.setLayout(new BoxLayout(panelSuperior,BoxLayout.LINE_AXIS)); //PAGE_AXIS
+        panelSuperior.setLayout(new BoxLayout(panelSuperior,BoxLayout.LINE_AXIS));
         JLabel dni=new JLabel("DNI:");
         JTextField campo= new JTextField(20);
         panelSuperior.add(dni);
@@ -31,10 +35,9 @@ public class VentanaRecuperarCliente {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nif = campo.getText();
+                AbstractTableModel modeloTabla = modelo.recuperarCliente(nif);
+                SwingUtilities.invokeLater(() -> new VentanaTabla().GUI(modeloTabla));
 
-
-
-//                controlador.recuperarCliente(nif);
                 ventana.dispose();
             }
         });

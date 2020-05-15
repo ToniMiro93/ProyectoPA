@@ -1,14 +1,15 @@
 package mvc.modelo;
 
 import data.cliente.Cliente;
-import mvc.modelo.tablas.InterrogaTablas;
+import mvc.modelo.tablas.ModeloTablas;
+import mvc.modelo.tablas.ModeloTablaClientes;
 
+import javax.swing.table.AbstractTableModel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface InterrogaModelo {
-    ArrayList<Cliente> listarClientes();
+    AbstractTableModel listarClientes();
     ArrayList<Cliente> clientesEntreFechas(LocalDate fechaInicio, LocalDate fechaFin);
-    Cliente recuperarCliente(String nif);
-    InterrogaTablas consultaTabla();
+    AbstractTableModel recuperarCliente(String nif);
 }

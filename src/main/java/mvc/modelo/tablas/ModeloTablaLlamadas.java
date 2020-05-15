@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.Arrays;
 import java.util.List;
 
-public class ModeloTablaLlamadas extends AbstractTableModel implements InterrogaTablas{
+public class ModeloTablaLlamadas extends AbstractTableModel implements ModeloTablas {
     final List<String> cabecera = Arrays.asList("Numero de destino", "Fecha de llamada",
             "Hora de la llamada", "duracion");
     List<Llamada> datos;
