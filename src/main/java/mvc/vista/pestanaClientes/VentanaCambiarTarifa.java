@@ -1,14 +1,11 @@
-package mvc.vista.pestañaClientes;
+package mvc.vista.pestanaClientes;
 
 import mvc.controlador.Controlador;
-import nombres.NIF;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class VentanaCambiarTarifa {
 
@@ -25,13 +22,13 @@ public class VentanaCambiarTarifa {
         JPanel panelSuperior = new JPanel();
         panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.LINE_AXIS));
         JLabel nif = new JLabel("Introduzca el nif: ");
-        JTextField campo1 = new JTextField(20);
+        JTextField campo = new JTextField(20);
         panelSuperior.add(nif);
-        panelSuperior.add(campo1);
+        panelSuperior.add(campo);
 
         JPanel panelCen1 = new JPanel();
-        JLabel tarifa = new JLabel("Elija la tarifa deseada: ");
-        panelCen1.add(tarifa);
+        JLabel tarifaDescripcion = new JLabel("Elija la tarifa deseada: ");
+        panelCen1.add(tarifaDescripcion);
 
         JPanel panelCen2 = new JPanel();
         panelCen2.setLayout(new BoxLayout(panelCen2, BoxLayout.LINE_AXIS));
@@ -42,19 +39,6 @@ public class VentanaCambiarTarifa {
         grupo.add(TarifaTardes);
         grupo.add(TarifaDomingos);
 
-        /*grupo.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                switch(e.getStateChange()) {
-                    case ItemEvent.SELECTED:
-                        campo2.setEnabled(false);
-                        break;
-                    case ItemEvent.DESELECTED:
-                        campo2.setEnabled(true);
-                        break;
-                }
-            }
-        });*/
 
         panelCen2.add(TarifaTardes);
         panelCen2.add(TarifaDomingos);
@@ -68,6 +52,17 @@ public class VentanaCambiarTarifa {
         JPanel panelInferior = new JPanel();
         panelInferior.setLayout(new FlowLayout());
         JButton aceptar = new JButton("Aceptar");
+        aceptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String nif = campo.getText();
+                String tarifa = "Tarifa Tardes";
+                if (TarifaDomingos.isSelected())
+                    tarifa = "Tarifa Domingos";
+                controlador.cambiarTarifa(nif, tarifa);
+                ventana.dispose();
+            }
+        });
         panelInferior.add(aceptar);
 
         contenedor.setLayout(new GridLayout(3,1));

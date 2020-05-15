@@ -10,6 +10,11 @@ import java.util.ArrayList;
 
 public interface InterrogaModelo {
     AbstractTableModel listarClientes();
-    ArrayList<Cliente> clientesEntreFechas(LocalDate fechaInicio, LocalDate fechaFin);
+    AbstractTableModel clientesEntreFechas(LocalDate fechaInicio, LocalDate fechaFin);
     AbstractTableModel recuperarCliente(String nif);
+    AbstractTableModel mostrarLlamadas(String nif);
+    AbstractTableModel llamadasEntreFechas(String nif, LocalDate fechaInicio, LocalDate fechaFin);
+    AbstractTableModel recuperarFactura(int codigo);
+    AbstractTableModel mostrarFacturas(String nif);
+    AbstractTableModel facturasEntreFechas(String nif, LocalDate fechaInicio, LocalDate fechaFin);
 }

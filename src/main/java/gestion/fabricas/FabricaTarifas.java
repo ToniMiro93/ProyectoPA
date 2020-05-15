@@ -5,7 +5,7 @@ import data.tarifas.TarifaBasica;
 import data.tarifas.TarifaDomingo;
 import data.tarifas.TarifaTardes;
 
-public class FabricaTarifas {
+public class FabricaTarifas implements Fabrica{
 
     /*
     No la utilizamos pero la guardamos en caso de

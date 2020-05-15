@@ -1,29 +1,25 @@
-package mvc.vista.pestañaClientes;
+package mvc.vista.pestanaClientes;
 
 import mvc.controlador.Controlador;
-import mvc.modelo.InterrogaModelo;
-import mvc.modelo.Modelo;
-import mvc.vista.tabla.VentanaTabla;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaRecuperarCliente {
+public class VentanaBorrar {
+    private Controlador controlador;
 
-    private InterrogaModelo modelo;
-
-    public VentanaRecuperarCliente (InterrogaModelo modelo){
-        this.modelo = modelo;
+    public VentanaBorrar (Controlador controlador){
+        this.controlador=controlador;
     }
+
     private void GUI() {
-        JFrame ventana = new JFrame("Recuperar Cliente");
+        JFrame ventana = new JFrame("Borrar Cliente");
         Container contenedor = ventana.getContentPane();
 
         JPanel panelSuperior = new JPanel();
-        panelSuperior.setLayout(new BoxLayout(panelSuperior,BoxLayout.LINE_AXIS));
+        panelSuperior.setLayout(new BoxLayout(panelSuperior,BoxLayout.LINE_AXIS)); //PAGE_AXIS
         JLabel dni=new JLabel("DNI:");
         JTextField campo= new JTextField(20);
         panelSuperior.add(dni);
@@ -35,9 +31,7 @@ public class VentanaRecuperarCliente {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nif = campo.getText();
-                AbstractTableModel modeloTabla = modelo.recuperarCliente(nif);
-                SwingUtilities.invokeLater(() -> new VentanaTabla().GUI(modeloTabla));
-
+                controlador.borrarCliente(nif);
                 ventana.dispose();
             }
         });
@@ -51,7 +45,6 @@ public class VentanaRecuperarCliente {
         ventana.pack();
         ventana.setVisible(true);
     }
-
 
     public void creaGUI() {
         SwingUtilities.invokeLater(new Runnable() {

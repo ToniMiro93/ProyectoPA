@@ -1,10 +1,8 @@
-package mvc.vista.pestañaClientes;
+package mvc.vista.pestanaClientes;
 
 import mvc.controlador.Controlador;
-import mvc.controlador.ControladorMVC;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

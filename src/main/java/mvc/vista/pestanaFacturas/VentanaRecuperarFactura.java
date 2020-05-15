@@ -1,29 +1,31 @@
-package mvc.vista.pestañaClientes;
+package mvc.vista.pestanaFacturas;
 
-import mvc.controlador.Controlador;
+import mvc.modelo.InterrogaModelo;
+import mvc.vista.tabla.VentanaTabla;
 
 import javax.swing.*;
-import javax.swing.text.AbstractDocument;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaBorrar {
-    private Controlador controlador;
+public class VentanaRecuperarFactura {
 
-    public VentanaBorrar (Controlador controlador){
-        this.controlador=controlador;
+    private InterrogaModelo modelo;
+
+    public VentanaRecuperarFactura (InterrogaModelo modelo){
+        this.modelo = modelo;
     }
 
     private void GUI() {
-        JFrame ventana = new JFrame("Borrar Cliente");
+        JFrame ventana = new JFrame("Recuperar Factura");
         Container contenedor = ventana.getContentPane();
 
         JPanel panelSuperior = new JPanel();
-        panelSuperior.setLayout(new BoxLayout(panelSuperior,BoxLayout.LINE_AXIS)); //PAGE_AXIS
-        JLabel dni=new JLabel("DNI:");
-        JTextField campo= new JTextField(20);
-        panelSuperior.add(dni);
+        panelSuperior.setLayout(new BoxLayout(panelSuperior,BoxLayout.LINE_AXIS));
+        JLabel cod=new JLabel("Codigo de factura:");
+        JTextField campo= new JTextField(30);
+        panelSuperior.add(cod);
         panelSuperior.add(campo);
 
         JPanel panelInferior = new JPanel();
@@ -31,8 +33,9 @@ public class VentanaBorrar {
         boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nif = campo.getText();
-                controlador.borrarCliente(nif);
+                int cod = Integer.parseInt(campo.getText());
+                AbstractTableModel modeloTabla = modelo.recuperarFactura(cod);
+                SwingUtilities.invokeLater(() -> new VentanaTabla().GUI(modeloTabla));
                 ventana.dispose();
             }
         });

@@ -1,10 +1,14 @@
 package mvc.vista;
 import mvc.controlador.*;
 import mvc.modelo.InterrogaModelo;
-import mvc.vista.pestañaClientes.VentanaBorrar;
-import mvc.vista.pestañaClientes.VentanaCambiarTarifa;
-import mvc.vista.pestañaClientes.VentanaClienteNuevo;
-import mvc.vista.pestañaClientes.VentanaRecuperarCliente;
+import mvc.vista.pestanaClientes.*;
+import mvc.vista.pestanaFacturas.VentanaEmitirFactura;
+import mvc.vista.pestanaFacturas.VentanaFacturasEntreFechas;
+import mvc.vista.pestanaFacturas.VentanaMostrarFacturas;
+import mvc.vista.pestanaFacturas.VentanaRecuperarFactura;
+import mvc.vista.pestañaLlamadas.VentanaLlamadasEntreFechas;
+import mvc.vista.pestañaLlamadas.VentanaMostrarLlamadas;
+import mvc.vista.pestañaLlamadas.VentanaNuevaLlamada;
 import mvc.vista.tabla.VentanaTabla;
 
 import javax.swing.*;
@@ -127,7 +131,7 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
                     listarClientes();
                     break;
                 case "listarFechas":
-                    controlador.clientesEntreFechas();
+                    clientesEntreFechas();
                     break;
                 case "tarifa":
                     cambiarTarifa();
@@ -140,25 +144,37 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
     class EscuchadorFacturas implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JButton boton = (JButton)e.getSource();
-            String texto = boton.getText();
-//            if(texto.equals("Emitir Factura"))
-//            else if(texto.equals("Recuperar Factura"))
-//            else if(texto.equals("Listar Facturas"))
-//            else if(texto.equals("Facturas entre fechas"))
-
+            switch (e.getActionCommand()) {
+                case "Emitir Factura":
+                    emitirFactura();
+                    break;
+                case "Recuperar Factura":
+                    recuperarFactura();
+                    break;
+                case "Listar Facturas":
+                    mostraFacturas();
+                    break;
+                case "Facturas entre fechas":
+                    mostrarFacturasEntreFechas();
+                    break;
+            }
         }
     }
 
     class EscuchadorLlamadas implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JButton boton = (JButton)e.getSource();
-            String texto = boton.getText();
-//            if(texto.equals("Añadir Llamada"))
-//            else if(texto.equals("Mostrar Llamadas"))
-//            else if(texto.equals("Llamadas entre fechas"))
-
+            switch (e.getActionCommand()) {
+                case "Añadir Llamada":
+                    anadirLlamada();
+                    break;
+                case "Mostrar Llamadas":
+                    mostrarLlamadas();
+                    break;
+                case "Llamadas entre fechas":
+                    mostrarLlamadasEntreFechas();
+                    break;
+            }
         }
     }
     private void anyadirCliente(){
@@ -187,6 +203,46 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
 
     private void cambiarTarifa(){
         VentanaCambiarTarifa ventana = new VentanaCambiarTarifa(controlador);
+        ventana.creaGUI();
+    }
+
+    private void clientesEntreFechas(){
+        VentanaClientesEntreFechas ventana = new VentanaClientesEntreFechas(modelo);
+        ventana.creaGUI();
+    }
+
+    private void anadirLlamada(){
+        VentanaNuevaLlamada ventana = new VentanaNuevaLlamada(controlador);
+        ventana.creaGUI();
+    }
+
+    private void mostrarLlamadas(){
+        VentanaMostrarLlamadas ventana = new VentanaMostrarLlamadas(modelo);
+        ventana.creaGUI();
+    }
+
+    private void mostrarLlamadasEntreFechas(){
+        VentanaLlamadasEntreFechas ventana = new VentanaLlamadasEntreFechas(modelo);
+        ventana.creaGUI();
+    }
+
+    private void emitirFactura(){
+        VentanaEmitirFactura ventana = new VentanaEmitirFactura(controlador);
+        ventana.creaGUI();
+    }
+
+    private void recuperarFactura(){
+        VentanaRecuperarFactura ventana = new VentanaRecuperarFactura(modelo);
+        ventana.creaGUI();
+    }
+
+    private  void mostraFacturas(){
+        VentanaMostrarFacturas ventana = new VentanaMostrarFacturas(modelo);
+        ventana.creaGUI();
+    }
+
+    private void mostrarFacturasEntreFechas(){
+        VentanaFacturasEntreFechas ventana = new VentanaFacturasEntreFechas(modelo);
         ventana.creaGUI();
     }
 }
