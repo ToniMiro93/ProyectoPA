@@ -14,4 +14,15 @@ public class Direccion implements Serializable {
         this.provincia = provincia;
     }
 
+    public int getCP() {
+        return CP;
+    }
+
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public String getPoblacion() {
+        return poblacion;
+    }
 }

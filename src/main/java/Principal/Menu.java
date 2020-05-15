@@ -1,7 +1,13 @@
 package Principal;
 
 import aplicacion.MenuPrincipal;
+import mvc.controlador.Controlador;
+import mvc.controlador.ControladorMVC;
+import mvc.modelo.ActualizaModelo;
+import mvc.modelo.Modelo;
 import mvc.vista.*;
+import mvc.vista.tablas.tablaClientes.ModeloTablaClientes;
+import mvc.vista.tablas.tablaClientes.VentanaTablaClientes;
 
 import java.io.*;
 import java.util.Scanner;
@@ -11,8 +17,16 @@ public class Menu {
         /*MenuPrincipal programa = cargarPrograma();
         programa.start();
         guardarPrograma(programa);*/
-        VentanaInicial ventana=new VentanaInicial();
-        ventana.creaGUI();
+        ControladorMVC controlador = new ControladorMVC();
+        VentanaInicial vista = new VentanaInicial();
+        Modelo modelo = new Modelo();
+        modelo.setVista(vista);
+        controlador.setVista(vista);
+        controlador.setModelo(modelo);
+        vista.setModelo(modelo);
+        vista.setControlador(controlador);
+        vista.creaGUI();
+
     }
 
     private static MenuPrincipal cargarPrograma() throws IOException, ClassNotFoundException{

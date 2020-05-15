@@ -64,4 +64,8 @@ public class Factura implements Serializable, Fecha {
                 ", importe=" + importe + '\n' +
                 '}';
     }
+
+    public Tarifa getTarifaAplicada() {
+        return tarifaAplicada;
+    }
 }

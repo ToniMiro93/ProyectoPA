@@ -119,7 +119,7 @@ public class MenuClientes implements Menu{
             case 1:
                 System.out.print("Apellido:");
                 String apellido=sc.next();
-                nuevoCliente = fabrica.getClienteParticular(nombre, apellido, NIF, correo, direccion);
+                nuevoCliente = fabrica.getClienteParticular(nombre, NIF, correo, direccion, apellido);
 //                nuevoCliente=new ClienteParticular(nombre,NIF,correo,direccion,apellido);
                 break;
             case 2:

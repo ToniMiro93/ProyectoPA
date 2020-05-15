@@ -7,7 +7,7 @@ import data.cliente.datos.Direccion;
 
 public class FabricaClientes implements Fabrica{
 
-    public Cliente getClienteParticular(String nombre, String apellidos, String NIF, String correo_e, Direccion direccion){
+    public Cliente getClienteParticular(String nombre, String NIF, String correo_e, Direccion direccion, String apellidos){
         return new ClienteParticular(nombre, NIF, correo_e, direccion, apellidos);
     }
 

@@ -1,10 +1,10 @@
 package mvc.controlador;
 
 public interface Controlador {
-    public void anyadirCliente();
-    public void borrarCliente();
-    public void cambiarTarifa();
-    public void recuperarCliente();
-    public void listarClientes();
-    public void clientesEntreFechas();
+    void borrarCliente(String dni);
+    void cambiarTarifa();
+    void recuperarCliente();
+    void listarClientes();
+    void clientesEntreFechas();
+    void crearCliente(String nombre,String apellidos,String nif, String email, String poblacion, String provincia, int cp);
 }

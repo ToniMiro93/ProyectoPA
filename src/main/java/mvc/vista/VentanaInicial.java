@@ -1,5 +1,10 @@
 package mvc.vista;
 import mvc.controlador.*;
+import mvc.modelo.ActualizaModelo;
+import mvc.modelo.InterrogaModelo;
+import mvc.modelo.Modelo;
+import mvc.vista.tablas.tablaClientes.VentanaTablaClientes;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,14 +12,17 @@ import java.awt.event.ActionListener;
 
 
 public class VentanaInicial implements InformarVista,InterrogaVista{
-    private Controlador controlador;
-    private JTextField jtfNombre;
-    private JLabel jlContador;
 
-    public VentanaInicial() {}
+    Controlador controlador;
+    InterrogaModelo modelo;
+
+    public void setModelo(InterrogaModelo modelo){
+        this.modelo=modelo;
+    }
     private void GUI() {
         JFrame ventana = new JFrame("Aplicación Telefonía");
         Container contenedor = ventana.getContentPane();
+
 
         JTabbedPane pestanyas = new JTabbedPane();
         JPanel clientesPestanya=new JPanel();
@@ -34,11 +42,11 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         JButton jbCambiarTarifa = new JButton("Cambiar Tarifa");
 
         jbAnyadirCliente.setActionCommand("nuevo");
-        jbAnyadirCliente.setActionCommand("borrar");
-        jbAnyadirCliente.setActionCommand("recuperar");
-        jbAnyadirCliente.setActionCommand("listarcli");
-        jbAnyadirCliente.setActionCommand("listarFechas");
-        jbAnyadirCliente.setActionCommand("tarifa");
+        jbBorrarCliente.setActionCommand("borrar");
+        jbRecuperarCliente.setActionCommand("recuperar");
+        jbListarClientes.setActionCommand("listarcli");
+        jbClientesFecha.setActionCommand("listarFechas");
+        jbCambiarTarifa.setActionCommand("tarifa");
 
         jbAnyadirCliente.addActionListener(escuchadorClientes);
         jbBorrarCliente.addActionListener(escuchadorClientes);
@@ -69,16 +77,20 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         facturasPestanya.add(jbRecuperarFactura);
         facturasPestanya.add(jbListarFacturas);
         facturasPestanya.add(jbFacturasFechas);
+
         EscuchadorLlamadas escuchadorLlamadas=new EscuchadorLlamadas();
         JButton jbAnyadirLlamada = new JButton("Añadir Llamada");
         JButton jbListarLlamadas = new JButton("Mostrar Llamadas");
         JButton jbLlamadasFechas = new JButton("Llamadas entre fechas");
+
         jbAnyadirLlamada.addActionListener(escuchadorLlamadas);
         jbListarLlamadas.addActionListener(escuchadorLlamadas);
         jbLlamadasFechas.addActionListener(escuchadorLlamadas);
+
         llamadasPestanya.add(jbAnyadirLlamada);
         llamadasPestanya.add(jbListarLlamadas);
         llamadasPestanya.add(jbLlamadasFechas);
+
         contenedor.add(pestanyas);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.pack();
@@ -96,19 +108,34 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
     }
 
     class EscuchadorClientes implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
-                case: (texto.equals("Añadir Cliente")) controlador.anyadirCliente();
-                (texto.equals("Borrar Cliente")) controlador.borrarCliente();
-                else if (texto.equals("Recuperar Cliente")) controlador.recuperarCliente();
-                else if (texto.equals("Listar Clientes")) controlador.listarClientes();
-                else if (texto.equals("Listar Clientes entre fechas")) controlador.clientesEntreFechas();
-                else if (texto.equals("Cambiar Tarifa")) controlador.cambiarTarifa();
+                case "nuevo":
+                    anyadirCliente();
+                    break;
+                case "borrar":
+                    borrarCliente();
+                    break;
+                case "recuperar":
+                    controlador.recuperarCliente();
+                    break;
+                case "listarcli":
+                    listarClientes();
+                    break;
+                case "listarFechas":
+                    controlador.clientesEntreFechas();
+                    break;
+                case "tarifa":
+                    controlador.cambiarTarifa();
+                    break;
+
             }
         }
     }
 
     class EscuchadorFacturas implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             JButton boton = (JButton)e.getSource();
             String texto = boton.getText();
@@ -121,6 +148,7 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
     }
 
     class EscuchadorLlamadas implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             JButton boton = (JButton)e.getSource();
             String texto = boton.getText();
@@ -130,5 +158,21 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
 
         }
     }
+    private void anyadirCliente(){
+        VentanaClienteNuevo ventana= new VentanaClienteNuevo(controlador);
+        ventana.creaGUI();
+    }
+    private void borrarCliente(){
 
+        VentanaBorrar ventana= new VentanaBorrar(controlador);
+        ventana.creaGUI();
+    }
+
+    public void setControlador(Controlador controlador){
+        this.controlador=controlador;
+    }
+
+    private void listarClientes(){
+        SwingUtilities.invokeLater(() -> new VentanaTablaClientes().GUI(modelo));
+    }
 }

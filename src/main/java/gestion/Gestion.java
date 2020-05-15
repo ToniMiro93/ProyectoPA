@@ -23,6 +23,7 @@ public class Gestion implements Serializable{
 
     public void anadirCliente(Cliente nuevoCliente){
         gestorClientes.nuevoCliente(nuevoCliente);
+        System.out.println("HASTA AQUI LLEGA");
     }
 
     public void borrarCliente(String NIF){

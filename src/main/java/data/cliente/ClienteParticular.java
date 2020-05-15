@@ -23,4 +23,7 @@ public class ClienteParticular extends Cliente {
                 "\tdireccion = " + direccion
                 ;
     }
+    public String getApellidos(){
+        return apellidos;
+    }
 }

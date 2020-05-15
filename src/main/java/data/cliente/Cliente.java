@@ -59,4 +59,11 @@ public abstract class Cliente implements Serializable, Fecha {
     public LocalDate getFecha() {
         return fecha;
     }
+    public String geteMail(){
+        return eMail;
+    }
+
+    public Direccion getDireccion(){
+        return direccion;
+    }
 }
