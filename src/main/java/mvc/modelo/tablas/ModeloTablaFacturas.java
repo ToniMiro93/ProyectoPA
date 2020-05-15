@@ -1,4 +1,4 @@
-package mvc.vista.tablas.tablaFacturas;
+package mvc.modelo.tablas;
 
 import data.cliente.Cliente;
 import data.cliente.ClienteParticular;
@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.Arrays;
 import java.util.List;
 
-public class ModeloTablaFacturas extends AbstractTableModel {
+public class ModeloTablaFacturas extends AbstractTableModel implements InterrogaTablas{
     final List<String> cabecera = Arrays.asList("Código", "Fecha de emisión", "Inicio del periodo",
             "Final del periodo", "Tarifa aplicada", "Importe");
     List<Factura> datos;

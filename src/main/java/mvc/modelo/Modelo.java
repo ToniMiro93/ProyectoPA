@@ -1,13 +1,12 @@
 package mvc.modelo;
 
-import data.Fecha;
 import data.cliente.Cliente;
 import data.cliente.datos.Direccion;
 import gestion.fabricas.Fabrica;
 import gestion.fabricas.FabricaClientes;
 import gestion.*;
+import mvc.modelo.tablas.InterrogaTablas;
 import mvc.vista.InformarVista;
-import mvc.vista.tablas.tablaClientes.InformaVistaTablaClientes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,9 +38,18 @@ public class Modelo implements ActualizaModelo, InterrogaModelo{
         return clientes;
     }
 
+    public InterrogaTablas consultaTabla(){
+        return null;
+    }
+
     public ArrayList<Cliente> clientesEntreFechas(LocalDate fechaInicio, LocalDate fin){
         ArrayList<Cliente> clientes=new ArrayList<>();
         clientes.addAll(gestor.getDatosEntreFechas(gestor.listarClientes(),fechaInicio,fin));
         return clientes;
+    }
+
+    @Override
+    public Cliente recuperarCliente(String nif) {
+        return gestor.recuperarCliente(nif);
     }
 }

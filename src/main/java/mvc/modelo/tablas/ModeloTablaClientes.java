@@ -1,4 +1,4 @@
-package mvc.vista.tablas.tablaClientes;
+package mvc.modelo.tablas;
 
 import data.cliente.Cliente;
 import data.cliente.ClienteParticular;
@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.Arrays;
 import java.util.List;
 
-public class ModeloTablaClientes extends AbstractTableModel implements InformaVistaTablaClientes {
+public class ModeloTablaClientes extends AbstractTableModel implements InterrogaTablas{
     final List<String> cabecera = Arrays.asList("Nombre", "Apellidos", "NIF", "Correo", "Fecha",
             "Codigo Postal", "Provincia", "Poblacion");
     List<Cliente> datos;

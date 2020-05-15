@@ -1,14 +1,16 @@
 package mvc.vista;
 import mvc.controlador.*;
-import mvc.modelo.ActualizaModelo;
 import mvc.modelo.InterrogaModelo;
-import mvc.modelo.Modelo;
+import mvc.vista.pestañaClientes.VentanaBorrar;
+import mvc.vista.pestañaClientes.VentanaClienteNuevo;
 import mvc.vista.tablas.tablaClientes.VentanaTablaClientes;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class VentanaInicial implements InformarVista,InterrogaVista{
@@ -118,7 +120,7 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
                     borrarCliente();
                     break;
                 case "recuperar":
-                    controlador.recuperarCliente();
+                    recuperarCliente();
                     break;
                 case "listarcli":
                     listarClientes();
@@ -173,6 +175,12 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
     }
 
     private void listarClientes(){
+
         SwingUtilities.invokeLater(() -> new VentanaTablaClientes().GUI(modelo));
+    }
+
+    private void recuperarCliente(){
+        VentanaBorrar ventana= new VentanaBorrar(controlador);
+        ventana.creaGUI();
     }
 }

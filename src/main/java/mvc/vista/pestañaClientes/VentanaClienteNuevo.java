@@ -1,4 +1,4 @@
-package mvc.vista;
+package mvc.vista.pestañaClientes;
 
 import mvc.controlador.Controlador;
 import mvc.controlador.ControladorMVC;
@@ -21,23 +21,23 @@ public class VentanaClienteNuevo{
     private void GUI() {
         JFrame ventana = new JFrame("Nuevo Cliente");
         Container contenedor = ventana.getContentPane();
-        JPanel panelPrincipal=new JPanel();
+        JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal,BoxLayout.PAGE_AXIS));
 
-        JPanel panelCampos= new JPanel();
+        JPanel panelCampos = new JPanel();
         panelCampos.setLayout(new GridLayout(7,2));
-        JPanel panelTipo=new JPanel();
+        JPanel panelTipo = new JPanel();
         panelTipo.setLayout(new BoxLayout(panelTipo,BoxLayout.LINE_AXIS));
-        JPanel panelAnyadir =new JPanel();
+        JPanel panelAnyadir = new JPanel();
         panelAnyadir.setLayout(new BoxLayout(panelAnyadir,BoxLayout.LINE_AXIS));
 
-        JLabel nombre= new JLabel("Nombre:");
-        JLabel apellidos= new JLabel("Apellidos:");
-        JLabel nif=new JLabel("NIF:");
-        JLabel email=new JLabel("Correo:");
-        JLabel poblacion=new JLabel("Población:");
-        JLabel provincia=new JLabel("Provincia:");
-        JLabel codPostal=new JLabel("Código postal:");
+        JLabel nombre = new JLabel("Nombre:");
+        JLabel apellidos = new JLabel("Apellidos:");
+        JLabel nif = new JLabel("NIF:");
+        JLabel email = new JLabel("Correo:");
+        JLabel poblacion = new JLabel("Población:");
+        JLabel provincia = new JLabel("Provincia:");
+        JLabel codPostal = new JLabel("Código postal:");
 
         JTextField campo1 = new JTextField(20);
         JTextField campo2 = new JTextField(20);
@@ -118,6 +118,7 @@ public class VentanaClienteNuevo{
         ventana.setVisible(true);
 
     }
+
     public void creaGUI() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

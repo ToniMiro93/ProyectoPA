@@ -14,8 +14,8 @@ public class ControladorMVC implements Controlador{
     }
 
     @Override
-    public void borrarCliente(String dni) {
-        modelo.borrarCliente(dni);
+    public void borrarCliente(String nif) {
+        modelo.borrarCliente(nif);
     }
 
     @Override
@@ -23,15 +23,7 @@ public class ControladorMVC implements Controlador{
 
     }
 
-    @Override
-    public void recuperarCliente() {
 
-    }
-
-    @Override
-    public void listarClientes() {
-
-    }
 
     @Override
     public void clientesEntreFechas() {

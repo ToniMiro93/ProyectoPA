@@ -1,13 +1,9 @@
 package Principal;
 
 import aplicacion.MenuPrincipal;
-import mvc.controlador.Controlador;
 import mvc.controlador.ControladorMVC;
-import mvc.modelo.ActualizaModelo;
 import mvc.modelo.Modelo;
 import mvc.vista.*;
-import mvc.vista.tablas.tablaClientes.ModeloTablaClientes;
-import mvc.vista.tablas.tablaClientes.VentanaTablaClientes;
 
 import java.io.*;
 import java.util.Scanner;

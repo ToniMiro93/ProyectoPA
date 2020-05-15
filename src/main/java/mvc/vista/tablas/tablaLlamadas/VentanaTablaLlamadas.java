@@ -1,5 +1,6 @@
 package mvc.vista.tablas.tablaLlamadas;
 
+import mvc.modelo.tablas.ModeloTablaLlamadas;
 import mvc.vista.tablas.Tabla;
 
 import javax.swing.*;

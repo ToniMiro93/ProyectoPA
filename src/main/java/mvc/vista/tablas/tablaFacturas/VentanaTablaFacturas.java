@@ -1,7 +1,7 @@
 package mvc.vista.tablas.tablaFacturas;
 
+import mvc.modelo.tablas.ModeloTablaFacturas;
 import mvc.vista.tablas.Tabla;
-import mvc.vista.tablas.tablaClientes.ModeloTablaClientes;
 
 import javax.swing.*;
 import java.awt.*;
