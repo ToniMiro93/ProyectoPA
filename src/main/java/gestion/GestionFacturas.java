@@ -49,7 +49,7 @@ class GestionFacturas implements Serializable {
     }
 
     private void anadirFactura(Cliente cliente, Factura nuevaFactura){
-        if (facturas.get(cliente) == null)
+        if (facturas.get(cliente.getNIF()) == null)
             facturas.put(cliente.getNIF(), new HashSet<>());
         facturas.get(cliente.getNIF()).add(nuevaFactura);
         codFacturas.put(nuevaFactura.getCodigo(), nuevaFactura);

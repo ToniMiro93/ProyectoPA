@@ -9,6 +9,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface InterrogaModelo {
+
+    //Todos las funciones que Vista llama en modelo devuelven un modelo que utilizaran cada una
+    //de las tablas de Vista.
+    //Cada funcion devolverá uno de los 3 modelos que hay (para Clientes, Facturas y Llamadas)
     AbstractTableModel listarClientes();
     AbstractTableModel clientesEntreFechas(LocalDate fechaInicio, LocalDate fechaFin);
     AbstractTableModel recuperarCliente(String nif);

@@ -32,6 +32,8 @@ public class ModeloTablaFacturas extends AbstractTableModel implements ModeloTab
         if (columna == 1) return datos.get(fila).getFecha();
         if (columna == 2) return datos.get(fila).getInicioPeriodo();
         if (columna == 3) return datos.get(fila).getFinalPeriodo();
+
+        //Comprobacion de la tarifa utilizada para calcular el importe de la llamada
         if (columna == 4) {
             Tarifa tarifa = datos.get(fila).getTarifaAplicada();
             if (tarifa.getClass().equals(TarifaBasica.class))

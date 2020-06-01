@@ -1,6 +1,6 @@
 package Principal;
 
-import aplicacion.MenuPrincipal;
+import gestion.Gestion;
 import mvc.controlador.ControladorMVC;
 import mvc.modelo.Modelo;
 import mvc.vista.*;
@@ -25,8 +25,8 @@ public class Menu {
 
     }
 
-    private static MenuPrincipal cargarPrograma() throws IOException, ClassNotFoundException{
-        MenuPrincipal programa;
+    private static Gestion cargarPrograma() throws IOException, ClassNotFoundException{
+        Gestion gestion;
         System.out.print("Quieres cargar una base de datos anterior? s/n:");
         Scanner sc = new Scanner(System.in);
         String respuesta = sc.next();
@@ -37,18 +37,18 @@ public class Menu {
             try {
                 FileInputStream fis = new FileInputStream(respuesta);
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                programa = (MenuPrincipal) ois.readObject();
+                gestion = (Gestion) ois.readObject();
                 ois.close();
             } catch (FileNotFoundException error) {
-                programa = new MenuPrincipal();
+                gestion = new Gestion();
             }
         }
         else {
-            programa = new MenuPrincipal();
+            gestion = new Gestion();
         }
-        return programa;
+        return gestion;
     }
-    private static void guardarPrograma(MenuPrincipal programa) throws IOException, ClassNotFoundException{
+    private static void guardarPrograma(Gestion gestion) throws IOException, ClassNotFoundException{
         Scanner sc = new Scanner(System.in);
         String respuesta;
 
@@ -59,7 +59,7 @@ public class Menu {
             respuesta = sc.next();
             FileOutputStream fos = new FileOutputStream(respuesta);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(programa);
+            oos.writeObject(gestion);
             oos.close();
         }
     }

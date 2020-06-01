@@ -16,12 +16,18 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 public class VentanaInicial implements InformarVista,InterrogaVista{
 
     Controlador controlador;
     InterrogaModelo modelo;
+    ArrayList<VentanaTabla> tablasEmergentes;
+
+    public VentanaInicial() {
+        tablasEmergentes = new ArrayList<>();
+    }
 
     public void setModelo(InterrogaModelo modelo){
         this.modelo=modelo;
@@ -30,16 +36,16 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         JFrame ventana = new JFrame("Aplicación Telefonía");
         Container contenedor = ventana.getContentPane();
 
-
+        // Creación de pestañas para la ventana principal
         JTabbedPane pestanyas = new JTabbedPane();
         JPanel clientesPestanya=new JPanel();
         JPanel facturasPestanya=new JPanel();
         JPanel llamadasPestanya=new JPanel();
-
         pestanyas.add("Clientes", clientesPestanya);
         pestanyas.add("Facturas", facturasPestanya);
         pestanyas.add("Llamadas", llamadasPestanya);
 
+        //Opciones de las pestañas para clientes
         EscuchadorClientes escuchadorClientes=new EscuchadorClientes();
         JButton jbAnyadirCliente = new JButton("Añadir Cliente");
         JButton jbBorrarCliente = new JButton("Borrar Cliente");
@@ -69,6 +75,7 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         clientesPestanya.add(jbCambiarTarifa);
         clientesPestanya.add(jbClientesFecha);
 
+        //Opciones de la pestaña para facturas
         EscuchadorFacturas escuchadorFacturas=new EscuchadorFacturas();
         JButton jbEmitirFactura = new JButton("Emitir Factura");
         JButton jbRecuperarFactura = new JButton("Recuperar Factura");
@@ -85,6 +92,7 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
         facturasPestanya.add(jbListarFacturas);
         facturasPestanya.add(jbFacturasFechas);
 
+        //Opciones de la pestaña para llamadas
         EscuchadorLlamadas escuchadorLlamadas=new EscuchadorLlamadas();
         JButton jbAnyadirLlamada = new JButton("Añadir Llamada");
         JButton jbListarLlamadas = new JButton("Mostrar Llamadas");
@@ -193,7 +201,12 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
 
     private void listarClientes(){
             AbstractTableModel modeloTabla = modelo.listarClientes();
-            SwingUtilities.invokeLater(() -> new VentanaTabla().GUI(modeloTabla));
+            VentanaTabla ventana = new VentanaTabla();
+            SwingUtilities.invokeLater(() -> ventana.GUI(modeloTabla));
+
+            //Guardamos las ventanas que abrimos para saber que ventanas tenemos
+            //que actualizar cuando cambie el modelo
+            tablasEmergentes.add(ventana);
     }
 
     private void recuperarCliente(){
@@ -244,5 +257,11 @@ public class VentanaInicial implements InformarVista,InterrogaVista{
     private void mostrarFacturasEntreFechas(){
         VentanaFacturasEntreFechas ventana = new VentanaFacturasEntreFechas(modelo);
         ventana.creaGUI();
+    }
+
+    public void actualizar(AbstractTableModel modelo){
+        for (VentanaTabla tabla : tablasEmergentes){
+            tabla.actualizarTabla(modelo);
+        }
     }
 }

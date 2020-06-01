@@ -30,26 +30,34 @@ public class Modelo implements ActualizaModelo, InterrogaModelo{
 
     public void crearCliente(String nombre,String apellidos,String nif, String email, String poblacion, String provincia, int cp){
 
-        // Creamos el connstructor
+        // Creamos el connstructor de cliente
         FabricaClientes fabricaCliente= new FabricaClientes();
 
-        // Se crea el Pojo
+        // Se crea el tipo de cliente que se necesite.
         Direccion direccion = new Direccion(cp,provincia,poblacion);
         Cliente cliente = apellidos==null ? fabricaCliente.getClienteEmpresa(nombre,nif,email,direccion): fabricaCliente.getClienteParticular(nombre,nif,email,direccion,apellidos);
 
         // Se incorpora
         gestor.anadirCliente(cliente);
-
+        vista.actualizar(listarClientes());
     }
 
     public void borrarCliente(String dni){
         gestor.borrarCliente(dni);
+        vista.actualizar(listarClientes());
     }
 
     public AbstractTableModel listarClientes(){
+
+        //Creación de un ArrayList para entregarlo al modelo de las tablas en cuestion.
         ArrayList<Cliente> clientes=new ArrayList<>();
+
+        //La lista se completa con los elementos del conjunto devuelto por nuestro gestor
         clientes.addAll(gestor.listarClientes());
+
+        //Se devuelve a Vista el modelo para crear una tabla en la interfaz grafica
         return new ModeloTablaClientes(clientes);
+
     }
 
 

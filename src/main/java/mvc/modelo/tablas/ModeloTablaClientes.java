@@ -35,6 +35,8 @@ public class ModeloTablaClientes extends AbstractTableModel implements ModeloTab
 
     public Object getValueAt(int fila, int columna){
         if (columna == 0) return datos.get(fila).getNombre();
+
+        //Comrpobacion del tipo de cliente (empresa/particular) para mostrar el campo apellido o omitirlo
         if (columna == 1) {
             if (datos.get(fila).getClass().equals(ClienteParticular.class)){
                 ClienteParticular cliente = (ClienteParticular) datos.get(fila);
@@ -48,6 +50,8 @@ public class ModeloTablaClientes extends AbstractTableModel implements ModeloTab
         if (columna == 5) return datos.get(fila).getDireccion().getCP();
         if (columna == 6) return datos.get(fila).getDireccion().getProvincia();
         if (columna == 7) return datos.get(fila).getDireccion().getPoblacion();
+
+        //Comprobación de la tarifa obtenida mas recientemente
         if (columna == 8) {
             Tarifa tarifa = datos.get(fila).getTarifa();
             if (tarifa.getClass().equals(TarifaBasica.class))
